@@ -1,6 +1,7 @@
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 import Image from "next/image";
+
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 // css
 const defaultFlex = ["flex", "items-center", "justify-between", "gap-8"];
@@ -10,20 +11,32 @@ export default function Hero() {
     <>
       <div className={cn(defaultFlex)}>
         {/* left */}
-        <div className="space-y-5 border">
-          <h1 className="text-3xl">Undangan Pernikahan Online</h1>
-          <p>
-            Dikemas dalam bentuk website yang menarik serta dapat dibagikan
-            kapanpun dan dimanapun. Simple, 5 menit undangan selesai 😉
-          </p>
-          <Button className="text-base" variant="primary" size="md">
-            Buat Sekarang
-          </Button>
+        <div className="space-y-8 border">
+          {/* description */}
+          <div className="space-y-5">
+            <h1 className="font-bold text-4xl text-slate-600">
+              Undangan Website
+            </h1>
+            <p>
+              Undang orang terdekatmu dengan mudah, praktis dan tanpa ada
+              batasan menggunakan Undangan Website kekinian dari Undangan
+              Digitail ID
+            </p>
+          </div>
+          {/* call to action */}
+          <div className={cn(defaultFlex, "justify-start", "gap-5")}>
+            <Button className="text-base" variant="primary" size="md">
+              Buat Sekarang
+            </Button>
+            <Button className="text-base" variant="primary" size="md">
+              Lihat Tema
+            </Button>
+          </div>
         </div>
 
         {/* right */}
         <div className="border">
-          <Image src="/img/hero.png" alt="hero" width={500} height={500} />
+          <Image src="/img/hero/hero.png" alt="hero" width={800} height={800} />
         </div>
       </div>
     </>
