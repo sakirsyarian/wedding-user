@@ -5,16 +5,17 @@ import { Button } from "@/components/ui/button";
 
 // css
 const defaultFlex = ["flex", "items-center", "justify-between", "gap-8"];
+const defaultSpaceY = ["space-y-10"];
 
 export default function Hero() {
   return (
     <>
-      <div className={cn(defaultFlex)}>
+      <div className={cn(defaultFlex, "border")}>
         {/* left */}
-        <div className="space-y-8 border">
+        <div className={cn(defaultSpaceY)}>
           {/* description */}
-          <div className="space-y-5">
-            <h1 className="font-bold text-4xl text-slate-600">
+          <div className={cn(defaultSpaceY, "space-y-5")}>
+            <h1 className="font-semibold text-4xl text-slate-600">
               Undangan Website
             </h1>
             <p>
@@ -23,6 +24,7 @@ export default function Hero() {
               Digitail ID
             </p>
           </div>
+
           {/* call to action */}
           <div className={cn(defaultFlex, "justify-start", "gap-5")}>
             <Button className="text-base" variant="primary" size="md">
@@ -35,7 +37,7 @@ export default function Hero() {
         </div>
 
         {/* right */}
-        <div className="border">
+        <div className="">
           <Image src="/img/hero/hero.png" alt="hero" width={800} height={800} />
         </div>
       </div>

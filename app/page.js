@@ -1,9 +1,10 @@
 import { cn } from "@/lib/utils";
 import Hero from "./component/Hero";
 import Navbar from "./component/Navbar";
+import WhyMe from "./component/WhyMe";
 
 // css
-const defaultCaontainer = ["py-5", "container", "space-y-10", "text-slate-500"];
+const defaultCaontainer = ["py-5", "container", "space-y-20", "text-slate-500"];
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
       <div className={cn(defaultCaontainer)}>
         <Navbar />
         <Hero />
+        <WhyMe />
       </div>
     </>
   );
