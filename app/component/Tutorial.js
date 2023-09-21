@@ -22,7 +22,7 @@ const tutorial = [
   },
 ];
 
-export default function MakeInvitation() {
+export default function Tutorial() {
   return (
     <>
       <div className={cn(defaultSpaceY, "border")}>
