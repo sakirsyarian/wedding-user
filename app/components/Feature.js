@@ -62,31 +62,35 @@ const features = [
 export default function Feature() {
   return (
     <>
-      <div id="feature" className={cn(defaultSpaceY, "border")}>
-        {/* heading */}
-        <div className={cn(defaultSpaceY, "space-y-5", "text-center")}>
-          <h2 className="font-semibold text-2xl">Fitur Terbaik</h2>
-          <p>
-            Fitur undangan pernikahan online unggulan yang siap kamu gunakan
-          </p>
-        </div>
-
-        {/* content */}
-        <div className="grid grid-cols-4 gap-5">
-          {features.map((feature, index) => (
-            <div key={index} className={cn(defaultSpaceY, "space-y-3")}>
-              {/* title */}
-              <div className="flex gap-3">
-                {feature.icon}
-                <h3 className="font-medium">{feature.title}</h3>
-              </div>
-
-              {/* description */}
-              <p>{feature.description}</p>
+      <section id="feature" className="border">
+        <div className="container py-10">
+          <div className={cn(defaultSpaceY)}>
+            {/* heading */}
+            <div className={cn(defaultSpaceY, "space-y-5", "text-center")}>
+              <h2 className="font-semibold text-2xl">Fitur Terbaik</h2>
+              <p>
+                Fitur undangan pernikahan online unggulan yang siap kamu gunakan
+              </p>
             </div>
-          ))}
+
+            {/* content */}
+            <div className="grid grid-cols-4 gap-5">
+              {features.map((feature, index) => (
+                <div key={index} className={cn(defaultSpaceY, "space-y-3")}>
+                  {/* title */}
+                  <div className="flex gap-3">
+                    {feature.icon}
+                    <h3 className="font-medium">{feature.title}</h3>
+                  </div>
+
+                  {/* description */}
+                  <p>{feature.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
     </>
   );
 }

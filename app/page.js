@@ -1,18 +1,18 @@
 import { cn } from "@/lib/utils";
 
-import Hero from "./component/Hero";
-import Navbar from "./component/Navbar";
-import Choose from "./component/Choose";
-import Feature from "./component/Feature";
-import Tutorial from "./component/Tutorial";
-import Template from "./component/Template";
-import Testimoni from "./component/Testimoni";
-import Price from "./component/Price";
-import Question from "./component/Question";
-import Footer from "./component/Footer";
+import Hero from "./components/Hero";
+import Navbar from "./components/Navbar";
+import Choose from "./components/Choose";
+import Feature from "./components/Feature";
+import Tutorial from "./components/Tutorial";
+import Template from "./components/Template";
+import Testimoni from "./components/Testimoni";
+import Price from "./components/Price";
+import Question from "./components/Question";
+import Footer from "./components/Footer";
 
 // css
-const defaultCaontainer = ["py-5", "container", "space-y-20", "text-slate-500"];
+const defaultCaontainer = ["space-y-20", "text-slate-500"];
 
 export default function Home() {
   return (

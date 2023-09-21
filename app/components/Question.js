@@ -25,25 +25,29 @@ const faq = [
 export default function Question() {
   return (
     <>
-      <div id="faq" className={cn(defaultSpaceY, "border")}>
-        {/* heading */}
-        <div className={cn(defaultSpaceY, "space-y-5", "text-center")}>
-          <h2 className="font-semibold text-2xl">Pertanyaan Umum</h2>
-          <p>Dibawah ini adalah daftar pertanyaan yang sering ditanyakan</p>
-        </div>
-
-        {/* content */}
-        <div className="grid grid-cols-1 gap-5">
-          {faq.map((item, index) => (
-            <div key={index} className={cn(defaultSpaceY, "space-y-3")}>
-              {/* title */}
-              <h3 className="font-medium">{item.question}</h3>
-              {/* description */}
-              <p>{item.answer}</p>
+      <section id="faq" className="border">
+        <div className="container py-10">
+          <div className={cn(defaultSpaceY)}>
+            {/* heading */}
+            <div className={cn(defaultSpaceY, "space-y-5", "text-center")}>
+              <h2 className="font-semibold text-2xl">Pertanyaan Umum</h2>
+              <p>Dibawah ini adalah daftar pertanyaan yang sering ditanyakan</p>
             </div>
-          ))}
+
+            {/* content */}
+            <div className="grid grid-cols-1 gap-5">
+              {faq.map((item, index) => (
+                <div key={index} className={cn(defaultSpaceY, "space-y-3")}>
+                  {/* title */}
+                  <h3 className="font-medium">{item.question}</h3>
+                  {/* description */}
+                  <p>{item.answer}</p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
     </>
   );
 }
