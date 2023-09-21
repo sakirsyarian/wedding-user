@@ -67,7 +67,7 @@ export default function Feature() {
         <div className={cn(defaultSpaceY, "space-y-5", "text-center")}>
           <h2 className="font-semibold text-2xl">Fitur Terbaik</h2>
           <p>
-            Fitur undangan pernikahan online unggulan yang siap Kamu gunakan
+            Fitur undangan pernikahan online unggulan yang siap kamu gunakan
           </p>
         </div>
 
