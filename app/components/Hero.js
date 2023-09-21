@@ -1,7 +1,9 @@
 import Image from "next/image";
+import { ChevronsDown } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 // css
 const defaultFlex = ["flex", "items-center", "justify-between", "gap-8"];
@@ -22,24 +24,31 @@ export default function Hero() {
                 </h1>
                 <p>
                   Undang orang terdekatmu dengan mudah, praktis dan tanpa ada
-                  batasan menggunakan Undangan Website kekinian dari Undangan
-                  Digitail ID
+                  batasan menggunakan undangan website kekinian dari undangan
+                  Weeding
                 </p>
               </div>
 
               {/* call to action */}
               <div className={cn(defaultFlex, "justify-start", "gap-5")}>
-                <Button className="text-base" variant="primary" size="md">
-                  Buat Sekarang
-                </Button>
-                <Button className="text-base" variant="primary" size="md">
-                  Lihat Tema
-                </Button>
+                <Link href="/">
+                  <Button className="text-base" variant="primary">
+                    Buat Undangan
+                  </Button>
+                </Link>
+                <Link href="/">
+                  <div className="flex items-center">
+                    <Button className="text-base" variant="ghostPrimary">
+                      Lihat Tema
+                      <ChevronsDown className="ml-2 h-4 w-4 animate-bounce" />
+                    </Button>
+                  </div>
+                </Link>
               </div>
             </div>
 
             {/* right */}
-            <div className="">
+            <div>
               <Image
                 src="/img/hero/hero.png"
                 alt="hero"
