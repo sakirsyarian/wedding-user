@@ -31,7 +31,7 @@ export default function Testimoni() {
     <>
       <section id="testimoni" className="border">
         <div className="container py-10">
-          <div className={cn(defaultSpaceY, "border")}>
+          <div className={cn(defaultSpaceY)}>
             {/* heading */}
             <div className={cn(defaultSpaceY, "space-y-5", "text-center")}>
               <h2 className="font-semibold text-2xl">
