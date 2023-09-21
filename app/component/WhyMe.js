@@ -53,14 +53,11 @@ export default function WhyMe() {
         {/* content */}
         <div className="grid grid-cols-2 gap-5">
           {whyMe.map((item, index) => (
-            <div
-              key={index}
-              className={cn(defaultSpaceY, "space-y-3", "border")}
-            >
+            <div key={index} className={cn(defaultSpaceY, "space-y-3")}>
               {/* title */}
               <div className="flex gap-3">
                 {item.icon}
-                <h3 className="font-semibold">{item.title}</h3>
+                <h3 className="font-medium">{item.title}</h3>
               </div>
 
               {/* description */}
