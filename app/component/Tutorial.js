@@ -1,12 +1,10 @@
-import { Zap, Wallet, ThumbsUp, MessageCircle } from "lucide-react";
-
 import { cn } from "@/lib/utils";
 
 // css
 const defaultSpaceY = ["space-y-12"];
 
 // data
-const whyMe = [
+const tutorial = [
   {
     title: "Registrasi",
     description:
@@ -39,13 +37,10 @@ export default function MakeInvitation() {
 
         {/* content */}
         <div className="grid grid-cols-3 gap-5">
-          {whyMe.map((item, index) => (
+          {tutorial.map((item, index) => (
             <div key={index} className={cn(defaultSpaceY, "space-y-3")}>
               {/* title */}
-              <div className="flex gap-3">
-                <h3 className="font-medium">{item.title}</h3>
-              </div>
-
+              <h3 className="font-medium">{item.title}</h3>
               {/* description */}
               <p>{item.description}</p>
             </div>
