@@ -43,10 +43,10 @@ const prices = [
   },
 ];
 
-export default function Tutorial() {
+export default function Price() {
   return (
     <>
-      <div className={cn(defaultSpaceY, "border")}>
+      <div id="price" className={cn(defaultSpaceY, "border")}>
         {/* heading */}
         <div className={cn(defaultSpaceY, "space-y-5", "text-center")}>
           <h2 className="font-semibold text-2xl">Harga Undangan</h2>

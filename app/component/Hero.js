@@ -10,7 +10,7 @@ const defaultSpaceY = ["space-y-10"];
 export default function Hero() {
   return (
     <>
-      <div className={cn(defaultFlex, "border")}>
+      <div id="hero" className={cn(defaultFlex, "border")}>
         {/* left */}
         <div className={cn(defaultSpaceY)}>
           {/* description */}

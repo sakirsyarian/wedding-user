@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 const defaultSpaceY = ["space-y-12"];
 
 // data
-const tutorial = [
+const tutorials = [
   {
     title: "Registrasi",
     description:
@@ -25,7 +25,7 @@ const tutorial = [
 export default function Tutorial() {
   return (
     <>
-      <div className={cn(defaultSpaceY, "border")}>
+      <div id="tutorial" className={cn(defaultSpaceY, "border")}>
         {/* heading */}
         <div className={cn(defaultSpaceY, "space-y-5", "text-center")}>
           <h2 className="font-semibold text-2xl">Langkah Pembuatan Undangan</h2>
@@ -37,12 +37,12 @@ export default function Tutorial() {
 
         {/* content */}
         <div className="grid grid-cols-3 gap-5">
-          {tutorial.map((item, index) => (
+          {tutorials.map((tutorial, index) => (
             <div key={index} className={cn(defaultSpaceY, "space-y-3")}>
               {/* title */}
-              <h3 className="font-medium">{item.title}</h3>
+              <h3 className="font-medium">{tutorial.title}</h3>
               {/* description */}
-              <p>{item.description}</p>
+              <p>{tutorial.description}</p>
             </div>
           ))}
         </div>

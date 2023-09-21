@@ -5,7 +5,7 @@ import Image from "next/image";
 const defaultSpaceY = ["space-y-12"];
 
 // data
-const testimoni = [
+const testimonials = [
   {
     photo: "lilis.jpg",
     name: "Kim Nadthilya",
@@ -29,7 +29,7 @@ const testimoni = [
 export default function Testimoni() {
   return (
     <>
-      <div className={cn(defaultSpaceY, "border")}>
+      <div id="testimoni" className={cn(defaultSpaceY, "border")}>
         {/* heading */}
         <div className={cn(defaultSpaceY, "space-y-5", "text-center")}>
           <h2 className="font-semibold text-2xl">
@@ -44,20 +44,20 @@ export default function Testimoni() {
 
         {/* content */}
         <div className="grid grid-cols-3 gap-5">
-          {testimoni.map((item, index) => (
+          {testimonials.map((testimoni, index) => (
             <div key={index} className={cn(defaultSpaceY, "space-y-3")}>
               {/* heading */}
               <div className="flex items-center gap-3">
                 <Image
-                  src={`/img/testimoni/${item.photo}`}
+                  src={`/img/testimoni/${testimoni.photo}`}
                   width={50}
                   height={50}
-                  alt={item.name}
+                  alt={testimoni.name}
                 />
-                <h3 className="font-medium">{item.name}</h3>
+                <h3 className="font-medium">{testimoni.name}</h3>
               </div>
               {/* description */}
-              <p>{item.testimoni}</p>
+              <p>{testimoni.testimoni}</p>
             </div>
           ))}
         </div>

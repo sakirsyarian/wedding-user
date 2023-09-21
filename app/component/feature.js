@@ -15,7 +15,7 @@ import { cn } from "@/lib/utils";
 const defaultSpaceY = ["space-y-12"];
 
 // data
-const whyMe = [
+const features = [
   {
     icon: <Users />,
     title: "Nama Tamu",
@@ -62,7 +62,7 @@ const whyMe = [
 export default function Feature() {
   return (
     <>
-      <div className={cn(defaultSpaceY, "border")}>
+      <div id="feature" className={cn(defaultSpaceY, "border")}>
         {/* heading */}
         <div className={cn(defaultSpaceY, "space-y-5", "text-center")}>
           <h2 className="font-semibold text-2xl">Fitur Terbaik</h2>
@@ -73,16 +73,16 @@ export default function Feature() {
 
         {/* content */}
         <div className="grid grid-cols-4 gap-5">
-          {whyMe.map((item, index) => (
+          {features.map((feature, index) => (
             <div key={index} className={cn(defaultSpaceY, "space-y-3")}>
               {/* title */}
               <div className="flex gap-3">
-                {item.icon}
-                <h3 className="font-medium">{item.title}</h3>
+                {feature.icon}
+                <h3 className="font-medium">{feature.title}</h3>
               </div>
 
               {/* description */}
-              <p>{item.description}</p>
+              <p>{feature.description}</p>
             </div>
           ))}
         </div>

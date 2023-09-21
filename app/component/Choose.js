@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 const defaultSpaceY = ["space-y-12"];
 
 // data
-const whyMe = [
+const chooses = [
   {
     icon: <Wallet />,
     title: "Harga Kompetitif",
@@ -33,10 +33,10 @@ const whyMe = [
   },
 ];
 
-export default function WhyMe() {
+export default function Choose() {
   return (
     <>
-      <div className={cn(defaultSpaceY, "border")}>
+      <div id="choose" className={cn(defaultSpaceY, "border")}>
         {/* heading */}
         <div className={cn(defaultSpaceY, "space-y-5", "text-center")}>
           <h2 className="font-semibold text-2xl">
@@ -52,16 +52,16 @@ export default function WhyMe() {
 
         {/* content */}
         <div className="grid grid-cols-2 gap-5">
-          {whyMe.map((item, index) => (
+          {chooses.map((choose, index) => (
             <div key={index} className={cn(defaultSpaceY, "space-y-3")}>
               {/* title */}
               <div className="flex gap-3">
-                {item.icon}
-                <h3 className="font-medium">{item.title}</h3>
+                {choose.icon}
+                <h3 className="font-medium">{choose.title}</h3>
               </div>
 
               {/* description */}
-              <p>{item.description}</p>
+              <p>{choose.description}</p>
             </div>
           ))}
         </div>

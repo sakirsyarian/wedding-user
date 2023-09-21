@@ -5,7 +5,7 @@ import Image from "next/image";
 const defaultSpaceY = ["space-y-12"];
 
 // template
-const template = [
+const templates = [
   {
     title: "Pastel Floral",
     source: "pastel.png",
@@ -23,7 +23,7 @@ const template = [
 export default function Template() {
   return (
     <>
-      <div className={cn(defaultSpaceY, "border")}>
+      <div id="template" className={cn(defaultSpaceY, "border")}>
         {/* heading */}
         <div className={cn(defaultSpaceY, "space-y-5", "text-center")}>
           <h2 className="font-semibold text-2xl">Pilihan Desain</h2>
@@ -34,17 +34,17 @@ export default function Template() {
 
         {/* content */}
         <div className="grid grid-cols-3 gap-5">
-          {template.map((item, index) => (
+          {templates.map((template, index) => (
             <div key={index} className={cn(defaultSpaceY, "space-y-3")}>
               {/* image */}
               <Image
-                src={`/img/template/${item.source}`}
+                src={`/img/template/${template.source}`}
                 width={500}
                 height={500}
-                alt={item.title}
+                alt={template.title}
               />
               {/* title */}
-              <h3 className="font-semibold text-lg">{item.title}</h3>
+              <h3 className="font-semibold text-lg">{template.title}</h3>
             </div>
           ))}
         </div>

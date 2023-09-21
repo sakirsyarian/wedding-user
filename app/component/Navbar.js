@@ -20,16 +20,16 @@ export default function Navbar() {
           {/* list */}
           <ul className={cn(defaultFlex, "font-medium")}>
             <li>
-              <Link href="/">Fitur</Link>
+              <Link href="/#feature">Fitur</Link>
             </li>
             <li>
-              <Link href="/">Desain</Link>
+              <Link href="/#template">Desain</Link>
             </li>
             <li>
-              <Link href="/">Testimoni</Link>
+              <Link href="/#testimoni">Testimoni</Link>
             </li>
             <li>
-              <Link href="/">Harga</Link>
+              <Link href="/#price">Harga</Link>
             </li>
           </ul>
 
