@@ -6,25 +6,25 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 // data
 const chooses = [
   {
-    icon: <Wallet />,
+    icon: <Wallet className="w-7 h-7" />,
     title: "Harga Kompetitif",
     description:
       "Buat undangan pernikahan tidak pernah semudah dan semurah ini",
   },
   {
-    icon: <Zap />,
+    icon: <Zap className="w-7 h-7" />,
     title: "Proses Cepat",
     description:
       "Proses pembuatan undangan hanya memerlukan waktu 5 menit serta dapat diubah kapanpun",
   },
   {
-    icon: <ThumbsUp />,
+    icon: <ThumbsUp className="w-7 h-7" />,
     title: "Fitur Lengkap",
     description:
       "Fitur yang dapat diandalkan mulai dari proses pembuatan undangan hingga proses membagikan undangan",
   },
   {
-    icon: <MessageCircle />,
+    icon: <MessageCircle className="w-7 h-7" />,
     title: "Support Terbaik",
     description:
       "Perlu bantuan ? tenang tim support Kami selalu bisa diandalkan",
@@ -39,13 +39,13 @@ const defaultHead = ["font-semibold", "text-3xl"];
 export default function Choose() {
   return (
     <>
-      <section id="choose" className="bg-amber-50/50 border">
-        <div className={cn(defaultSpaceY, "container py-24")}>
+      <section id="choose" className="bg-amber-500/5">
+        <div className="container py-24">
           <div className={cn(defaultSpaceY)}>
             {/* heading */}
             <div className={cn(defaultSpaceY, "space-y-5", "text-center")}>
               <p className={cn(defaultMiniHead)}>Kenapa Kami</p>
-              <h2 className={cn(defaultHead)}>Mengapa Memilih Weeding.id ?</h2>
+              <h2 className={cn(defaultHead)}>Mengapa Memilih Weeding ?</h2>
               <p>
                 Kami hadir sebagai sebuah solusi untuk membantu calon mempelai
                 yang

@@ -12,8 +12,8 @@ const defaultSpaceY = ["space-y-10"];
 export default function Hero() {
   return (
     <>
-      <section id="hero" className="border">
-        <div className="container">
+      <section id="hero">
+        <div className="container py-24">
           <div className={cn(defaultFlex)}>
             {/* left */}
             <div className={cn(defaultSpaceY)}>

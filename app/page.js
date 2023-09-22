@@ -11,13 +11,10 @@ import Price from "./components/Price";
 import Question from "./components/Question";
 import Footer from "./components/Footer";
 
-// css
-const defaultCaontainer = ["space-y-10", "text-slate-500"];
-
 export default function Home() {
   return (
     <>
-      <div className={cn(defaultCaontainer)}>
+      <div className="text-slate-500">
         <Navbar />
         <Hero />
         <Choose />

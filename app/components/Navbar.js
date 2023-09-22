@@ -9,7 +9,7 @@ const defaultFlex = ["flex", "items-center", "justify-between", "gap-8"];
 export default function Navbar() {
   return (
     <>
-      <nav className="top-0 z-10 sticky bg-white scrolled border">
+      <nav className="top-0 z-10 sticky bg-white">
         <div className="container">
           <div className={cn(defaultFlex, "py-5", "text-slate-600")}>
             {/* brand */}

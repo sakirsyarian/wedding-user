@@ -1,9 +1,6 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 
-// css
-const defaultSpaceY = ["space-y-12"];
-
 // template
 const templates = [
   {
@@ -20,6 +17,11 @@ const templates = [
   },
 ];
 
+// css
+const defaultSpaceY = ["space-y-16"];
+const defaultMiniHead = ["uppercase", "font-semibold", "text-amber-500"];
+const defaultHead = ["font-semibold", "text-3xl"];
+
 export default function Template() {
   return (
     <>
@@ -28,7 +30,8 @@ export default function Template() {
           <div className={cn(defaultSpaceY)}>
             {/* heading */}
             <div className={cn(defaultSpaceY, "space-y-5", "text-center")}>
-              <h2 className="font-semibold text-2xl">Pilihan Desain</h2>
+              <p className={cn(defaultMiniHead)}>Pilihan Tema</p>
+              <h2 className={cn(defaultHead)}>Langkah Pembuatan Undangan</h2>
               <p>
                 Pilih dan gunakan tema undangan pernikahan yang menarik serta
                 unik
