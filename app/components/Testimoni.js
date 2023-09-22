@@ -1,8 +1,14 @@
-import { cn } from "@/lib/utils";
 import Image from "next/image";
 
-// css
-const defaultSpaceY = ["space-y-12"];
+import { cn } from "@/lib/utils";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 // data
 const testimonials = [
@@ -26,17 +32,21 @@ const testimonials = [
   },
 ];
 
+// css
+const defaultSpaceY = ["space-y-16"];
+const defaultMiniHead = ["uppercase", "font-semibold", "text-amber-500"];
+const defaultHead = ["font-semibold", "text-3xl"];
+
 export default function Testimoni() {
   return (
     <>
-      <section id="testimoni" className="border">
-        <div className="container py-10">
+      <section id="testimoni">
+        <div className="container py-24">
           <div className={cn(defaultSpaceY)}>
             {/* heading */}
             <div className={cn(defaultSpaceY, "space-y-5", "text-center")}>
-              <h2 className="font-semibold text-2xl">
-                Mereka yang Mempercayai Kami
-              </h2>
+              <p className={cn(defaultMiniHead)}>Testimonial</p>
+              <h2 className={cn(defaultHead)}>Mereka Mempercayai Kami</h2>
               <p>
                 Inveet telah dipercaya oleh 420,056 pengguna. Serta telah
                 terkirim ke 10,721,897 tamu, <br /> total biaya percetakan yang
@@ -47,20 +57,21 @@ export default function Testimoni() {
             {/* content */}
             <div className="grid grid-cols-3 gap-5">
               {testimonials.map((testimoni, index) => (
-                <div key={index} className={cn(defaultSpaceY, "space-y-3")}>
-                  {/* heading */}
-                  <div className="flex items-center gap-3">
+                <Card key={index} className="text-slate-500 border-0">
+                  <CardHeader className="flex flex-row items-center gap-5">
                     <Image
                       src={`/img/testimoni/${testimoni.photo}`}
                       width={50}
                       height={50}
                       alt={testimoni.name}
+                      className="rounded-full"
                     />
-                    <h3 className="font-medium">{testimoni.name}</h3>
-                  </div>
-                  {/* description */}
-                  <p>{testimoni.testimoni}</p>
-                </div>
+                    <CardTitle className="text-lg">{testimoni.name}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p>{testimoni.testimoni}</p>
+                  </CardContent>
+                </Card>
               ))}
             </div>
           </div>
