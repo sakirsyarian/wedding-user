@@ -1,13 +1,24 @@
-import { CheckCircle } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { CheckCircle2 } from "lucide-react";
 
-// css
-const defaultSpaceY = ["space-y-12"];
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import Link from "next/link";
 
 // data
 const prices = [
   {
     tier: "Basic",
+    description: "Paket gratis dengan beberapa fitur yang minimalis.",
+    money: "Gratis",
+    diskon: "",
     features: [
       "Amplop Digital",
       "Hitung Mundur Acara",
@@ -19,6 +30,10 @@ const prices = [
   },
   {
     tier: "Premium",
+    description:
+      "Paket dengan beberapa fitur berguna untuk undangan pernikahan online Anda.",
+    money: "Rp. 99.000",
+    diskon: "Rp. 79.000",
     features: [
       "Paket Basic Tambah ++",
       "10 Foto dan 1 Video",
@@ -32,6 +47,10 @@ const prices = [
   },
   {
     tier: "Platinum",
+    description:
+      "Paket rekomendasi dengan fitur paling lengkap untuk pernikahan impianmu.",
+    money: "Rp. 199.000",
+    diskon: "Rp 149.000",
     features: [
       "Paket Premium Tambah ++",
       "30 Foto 3 Video",
@@ -43,15 +62,21 @@ const prices = [
   },
 ];
 
+// css
+const defaultSpaceY = ["space-y-16"];
+const defaultMiniHead = ["uppercase", "font-semibold", "text-amber-500"];
+const defaultHead = ["font-semibold", "text-3xl"];
+
 export default function Price() {
   return (
     <>
-      <section id="price" className="border">
-        <div className="container py-10">
+      <section id="price">
+        <div className="container py-24">
           <div className={cn(defaultSpaceY)}>
             {/* heading */}
             <div className={cn(defaultSpaceY, "space-y-5", "text-center")}>
-              <h2 className="font-semibold text-2xl">Harga Undangan</h2>
+              <p className={cn(defaultMiniHead)}>Paket Harga</p>
+              <h2 className={cn(defaultHead)}>Harga Undangan Digital</h2>
               <p>
                 Pilih paket undangan pernikahan online sesuai dengan
                 kebutuhanmu,
@@ -63,17 +88,35 @@ export default function Price() {
             {/* content */}
             <div className="grid grid-cols-3 gap-5">
               {prices.map((price, index) => (
-                <div key={index} className={cn(defaultSpaceY, "space-y-3")}>
-                  {/* title */}
-                  <h3 className="font-medium">{price.tier}</h3>
-                  {/* description */}
-                  {price.features.map((feature, index) => (
-                    <div key={index} className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5" />
-                      <p>{feature}</p>
+                <Card key={index} className="text-slate-500 border-0">
+                  <CardHeader className="space-y-5">
+                    <div className="space-y-2">
+                      <p className="font-semibold text-xl">{price.tier}</p>
+                      <p>{price.description}</p>
                     </div>
-                  ))}
-                </div>
+                    <div className="space-y-2">
+                      <CardDescription className="line-through text-red-500">
+                        {price.diskon}
+                      </CardDescription>
+                      <CardTitle>{price.money}</CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="space-y-3">
+                    {price.features.map((feature, index) => (
+                      <div key={index} className="flex items-center gap-3">
+                        <CheckCircle2 className="w-5 h-5 text-green-600" />
+                        <p>{feature}</p>
+                      </div>
+                    ))}
+                  </CardContent>
+                  <CardFooter>
+                    <Link href="/">
+                      <Button className="text-base" variant="primary">
+                        Pesan Sekarang
+                      </Button>
+                    </Link>
+                  </CardFooter>
+                </Card>
               ))}
             </div>
           </div>
