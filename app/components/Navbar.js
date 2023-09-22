@@ -10,8 +10,8 @@ export default function Navbar() {
   return (
     <>
       <nav className="top-0 z-10 sticky bg-white">
-        <div className="container">
-          <div className={cn(defaultFlex, "py-5", "text-slate-600")}>
+        <div className="container py-5">
+          <div className={cn(defaultFlex, "text-slate-600")}>
             {/* brand */}
             <div className="font-bold uppercase">
               <Link href="/" className="text-lg text-amber-500">
