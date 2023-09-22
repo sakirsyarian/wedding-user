@@ -1,14 +1,17 @@
 import { cn } from "@/lib/utils";
-
-// css
-const defaultSpaceY = ["space-y-12"];
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 // data
 const faq = [
   {
     question: "Apa itu Wedding?",
     answer:
-      "Wedding adalah platform atau website undangan pernikahan digital yang dapat membantu Anda dalam kebutuhan undangan pernikahan Anda..",
+      "Wedding adalah platform atau website undangan pernikahan digital yang dapat membantu Anda dalam kebutuhan undangan pernikahan Anda.",
   },
   {
     question: "Berapa lama proses pembuatan undangan digital di Wedding?",
@@ -22,28 +25,34 @@ const faq = [
   },
 ];
 
+// css
+const defaultSpaceY = ["space-y-16"];
+const defaultMiniHead = ["uppercase", "font-semibold", "text-amber-500"];
+const defaultHead = ["font-semibold", "text-3xl"];
+
 export default function Question() {
   return (
     <>
-      <section id="faq" className="border">
-        <div className="container py-10">
+      <section id="faq">
+        <div className="container py-24">
           <div className={cn(defaultSpaceY)}>
             {/* heading */}
             <div className={cn(defaultSpaceY, "space-y-5", "text-center")}>
-              <h2 className="font-semibold text-2xl">Pertanyaan Umum</h2>
+              <p className={cn(defaultMiniHead)}>FAQ</p>
+              <h2 className={cn(defaultHead)}>Pertanyaan Umum</h2>
               <p>Dibawah ini adalah daftar pertanyaan yang sering ditanyakan</p>
             </div>
 
             {/* content */}
             <div className="grid grid-cols-1 gap-5">
-              {faq.map((item, index) => (
-                <div key={index} className={cn(defaultSpaceY, "space-y-3")}>
-                  {/* title */}
-                  <h3 className="font-medium">{item.question}</h3>
-                  {/* description */}
-                  <p>{item.answer}</p>
-                </div>
-              ))}
+              <Accordion type="single" collapsible>
+                {faq.map((item, index) => (
+                  <AccordionItem key={index} value={`item-${index}`}>
+                    <AccordionTrigger>{item.question}</AccordionTrigger>
+                    <AccordionContent>{item.answer}</AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
             </div>
           </div>
         </div>
