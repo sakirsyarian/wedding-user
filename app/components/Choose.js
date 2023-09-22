@@ -1,9 +1,7 @@
 import { Zap, Wallet, ThumbsUp, MessageCircle } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-
-// css
-const defaultSpaceY = ["space-y-12"];
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 // data
 const chooses = [
@@ -33,17 +31,21 @@ const chooses = [
   },
 ];
 
+// css
+const defaultSpaceY = ["space-y-16"];
+const defaultMiniHead = ["uppercase", "font-semibold", "text-amber-500"];
+const defaultHead = ["font-semibold", "text-3xl"];
+
 export default function Choose() {
   return (
     <>
-      <section id="choose" className="border">
-        <div className="container py-10">
+      <section id="choose" className="bg-amber-50/50 border">
+        <div className={cn(defaultSpaceY, "container py-24")}>
           <div className={cn(defaultSpaceY)}>
             {/* heading */}
             <div className={cn(defaultSpaceY, "space-y-5", "text-center")}>
-              <h2 className="font-semibold text-2xl">
-                Mengapa memilih Weeding.id ?
-              </h2>
+              <p className={cn(defaultMiniHead)}>Kenapa Kami</p>
+              <h2 className={cn(defaultHead)}>Mengapa Memilih Weeding.id ?</h2>
               <p>
                 Kami hadir sebagai sebuah solusi untuk membantu calon mempelai
                 yang
@@ -54,18 +56,17 @@ export default function Choose() {
             </div>
 
             {/* content */}
-            <div className="grid grid-cols-2 gap-5">
+            <div className="grid grid-cols-4 gap-5">
               {chooses.map((choose, index) => (
-                <div key={index} className={cn(defaultSpaceY, "space-y-3")}>
-                  {/* title */}
-                  <div className="flex gap-3">
+                <Card key={index} className="text-slate-500 border-0">
+                  <CardHeader className="flex gap-3">
                     {choose.icon}
-                    <h3 className="font-medium">{choose.title}</h3>
-                  </div>
-
-                  {/* description */}
-                  <p>{choose.description}</p>
-                </div>
+                    <CardTitle>{choose.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p>{choose.description}</p>
+                  </CardContent>
+                </Card>
               ))}
             </div>
           </div>

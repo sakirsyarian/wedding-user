@@ -37,7 +37,7 @@ export default function Hero() {
                   </Button>
                 </Link>
                 <Link href="/">
-                  <div className="flex items-center">
+                  <div className={cn(defaultFlex)}>
                     <Button className="text-base" variant="ghostPrimary">
                       Lihat Tema
                       <ChevronsDown className="ml-2 h-4 w-4 animate-bounce" />

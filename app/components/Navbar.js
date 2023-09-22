@@ -9,7 +9,7 @@ const defaultFlex = ["flex", "items-center", "justify-between", "gap-8"];
 export default function Navbar() {
   return (
     <>
-      <nav className="top-0 sticky bg-white scrolled border">
+      <nav className="top-0 z-10 sticky bg-white scrolled border">
         <div className="container">
           <div className={cn(defaultFlex, "py-5", "text-slate-600")}>
             {/* brand */}
@@ -22,16 +22,24 @@ export default function Navbar() {
             {/* menu */}
             <ul className={cn(defaultFlex, "font-semibold")}>
               <li>
-                <Link href="/#feature">Fitur</Link>
+                <Link className="hover:text-amber-500" href="/#feature">
+                  Fitur
+                </Link>
               </li>
               <li>
-                <Link href="/#template">Tema</Link>
+                <Link className="hover:text-amber-500" href="/#template">
+                  Tema
+                </Link>
               </li>
               <li>
-                <Link href="/#testimoni">Testimoni</Link>
+                <Link className="hover:text-amber-500" href="/#testimoni">
+                  Testimoni
+                </Link>
               </li>
               <li>
-                <Link href="/#price">Harga</Link>
+                <Link className="hover:text-amber-500" href="/#price">
+                  Harga
+                </Link>
               </li>
             </ul>
 

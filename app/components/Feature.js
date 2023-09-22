@@ -11,9 +11,6 @@ import {
 
 import { cn } from "@/lib/utils";
 
-// css
-const defaultSpaceY = ["space-y-12"];
-
 // data
 const features = [
   {
@@ -59,11 +56,14 @@ const features = [
   },
 ];
 
+// css
+const defaultSpaceY = ["space-y-12"];
+
 export default function Feature() {
   return (
     <>
       <section id="feature" className="border">
-        <div className="container py-10">
+        <div className="container py-24">
           <div className={cn(defaultSpaceY)}>
             {/* heading */}
             <div className={cn(defaultSpaceY, "space-y-5", "text-center")}>

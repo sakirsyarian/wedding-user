@@ -12,7 +12,7 @@ import Question from "./components/Question";
 import Footer from "./components/Footer";
 
 // css
-const defaultCaontainer = ["space-y-20", "text-slate-500"];
+const defaultCaontainer = ["space-y-10", "text-slate-500"];
 
 export default function Home() {
   return (
