@@ -36,13 +36,19 @@ const defaultSpaceY = ["space-y-16"];
 const defaultMiniHead = ["uppercase", "font-semibold", "text-amber-500"];
 const defaultHead = ["font-semibold", "text-3xl"];
 const defaultCard = ["text-slate-500", "shadow-md", "border-0"];
-const defaultGrid = ["grid", "grid-cols-4", "gap-5"];
+const defaultGrid = [
+  "grid",
+  "grid-cols-1",
+  "md:grid-cols-2",
+  "lg:grid-cols-4",
+  "gap-5",
+];
 
 export default function Choose() {
   return (
     <>
       <section id="choose">
-        <div className="container py-24">
+        <div className="px-5 py-24 md:container">
           <div className={cn(defaultSpaceY)}>
             {/* heading */}
             <div className={cn(defaultSpaceY, "space-y-5", "text-center")}>
@@ -51,7 +57,7 @@ export default function Choose() {
               <p>
                 Kami hadir sebagai sebuah solusi untuk membantu calon mempelai
                 yang
-                <br />
+                <br className="hidden md:block" />
                 berbahagia untuk membuat undangan pernikahan online dengan cepat
                 dan mudah
               </p>

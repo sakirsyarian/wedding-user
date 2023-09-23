@@ -32,13 +32,13 @@ const defaultSpaceY = ["space-y-16"];
 const defaultMiniHead = ["uppercase", "font-semibold", "text-amber-500"];
 const defaultHead = ["font-semibold", "text-3xl"];
 const defaultCard = ["text-slate-500", "shadow-md", "border-0"];
-const defaultGrid = ["grid", "grid-cols-4", "gap-5"];
+const defaultGrid = ["grid", "grid-cols-1", "md:grid-cols-2", "gap-5"];
 
 export default function Tutorial() {
   return (
     <>
       <section id="tutorial">
-        <div className="container py-24">
+        <div className="px-5 py-24 md:container">
           <div className={cn(defaultSpaceY)}>
             {/* heading */}
             <div className={cn(defaultSpaceY, "space-y-5", "text-center")}>
@@ -51,7 +51,7 @@ export default function Tutorial() {
             </div>
 
             {/* content */}
-            <div className="flex gap-5">
+            <div className={cn(defaultGrid)}>
               <div>
                 <Image
                   src="/img/hero/hero.png"
@@ -61,7 +61,7 @@ export default function Tutorial() {
                   priority={true}
                 />
               </div>
-              <div className={cn(defaultGrid, "grid-cols-2")}>
+              <div className={cn(defaultGrid)}>
                 {tutorials.map((tutorial, index) => (
                   <Card key={index} className={cn(defaultCard)}>
                     <CardHeader>

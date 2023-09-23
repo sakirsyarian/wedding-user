@@ -35,7 +35,7 @@ export default function Question() {
   return (
     <>
       <section id="faq">
-        <div className="container py-24">
+        <div className="px-5 py-24 md:container">
           <div className={cn(defaultSpaceY)}>
             {/* heading */}
             <div className={cn(defaultSpaceY, "space-y-5", "text-center")}>
@@ -48,9 +48,17 @@ export default function Question() {
             <div className={cn(defaultGrid, "grid-cols-1")}>
               <Accordion type="single" collapsible>
                 {faq.map((item, index) => (
-                  <AccordionItem key={index} value={`item-${index}`}>
-                    <AccordionTrigger>{item.question}</AccordionTrigger>
-                    <AccordionContent>{item.answer}</AccordionContent>
+                  <AccordionItem
+                    key={index}
+                    value={`item-${index}`}
+                    className="text-left"
+                  >
+                    <AccordionTrigger className="text-left">
+                      {item.question}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-left">
+                      {item.answer}
+                    </AccordionContent>
                   </AccordionItem>
                 ))}
               </Accordion>

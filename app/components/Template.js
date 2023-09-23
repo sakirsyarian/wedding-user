@@ -26,13 +26,19 @@ const defaultSpaceY = ["space-y-16"];
 const defaultMiniHead = ["uppercase", "font-semibold", "text-amber-500"];
 const defaultHead = ["font-semibold", "text-3xl"];
 const defaultCard = ["text-slate-500", "shadow-md", "border-0"];
-const defaultGrid = ["grid", "grid-cols-4", "gap-5"];
+const defaultGrid = [
+  "grid",
+  "grid-cols-1",
+  "md:grid-cols-2",
+  "lg:grid-cols-3",
+  "gap-5",
+];
 
 export default function Template() {
   return (
     <>
       <section id="template">
-        <div className="container py-24">
+        <div className="px-5 py-24 md:container">
           <div className={cn(defaultSpaceY)}>
             {/* heading */}
             <div className={cn(defaultSpaceY, "space-y-5", "text-center")}>
@@ -45,7 +51,7 @@ export default function Template() {
             </div>
 
             {/* content */}
-            <div className={cn(defaultGrid, "grid-cols-3")}>
+            <div className={cn(defaultGrid)}>
               {templates.map((template, index) => (
                 <Card key={index} className={cn(defaultCard)}>
                   <CardHeader>

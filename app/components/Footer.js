@@ -73,18 +73,31 @@ const menus = [
 
 // css
 const defaultSpaceY = ["space-y-10"];
-const defaultFlex = ["flex", "items-center", "justify-between", "gap-20"];
+const defaultFlex = [
+  "flex",
+  "flex-col",
+  "md:flex-row",
+  "items-center",
+  "justify-between",
+  "md:gap-20",
+];
 
 export default function Footer() {
   return (
     <>
       <footer className="border">
-        <div className="container py-5">
+        <div className="px-5 py-5 md:container">
           <div className={cn(defaultSpaceY, "space-y-2")}>
-            <div className="flex gap-20">
+            {/* <div className="flex gap-20"> */}
+            <div className={cn(defaultFlex)}>
               {/* brand */}
               <div
-                className={cn(defaultSpaceY, "w-[800px]", "py-5", "space-y-5")}
+                className={cn(
+                  defaultSpaceY,
+                  "md:w-[800px]",
+                  "py-5",
+                  "space-y-5"
+                )}
               >
                 <h2 className="font-semibold text-2xl">Wedding</h2>
                 <p>
@@ -95,7 +108,14 @@ export default function Footer() {
               </div>
 
               {/* menu */}
-              <div className={cn(defaultFlex, "justify-center", "w-full")}>
+              <div
+                className={cn(
+                  defaultFlex,
+                  "items-start",
+                  "md:items-center",
+                  "w-full"
+                )}
+              >
                 {menus.map((menu, index) => (
                   <div
                     key={index}
@@ -119,7 +139,7 @@ export default function Footer() {
             <Separator />
 
             {/* credit */}
-            <div className={cn(defaultFlex, "py-5", "gap-0")}>
+            <div className={cn(defaultFlex, "py-5", "gap-5")}>
               <p>© {new Date().getFullYear()} Wedding. All rights reserved</p>
 
               {/* social */}

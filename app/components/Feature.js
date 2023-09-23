@@ -60,13 +60,19 @@ const features = [
 const defaultSpaceY = ["space-y-16"];
 const defaultMiniHead = ["uppercase", "font-semibold", "text-amber-500"];
 const defaultHead = ["font-semibold", "text-3xl"];
-const defaultGrid = ["grid", "grid-cols-4", "gap-5"];
+const defaultGrid = [
+  "grid",
+  "grid-cols-1",
+  "md:grid-cols-2",
+  "lg:grid-cols-4",
+  "gap-5",
+];
 
 export default function Feature() {
   return (
     <>
       <section id="feature">
-        <div className="container py-24">
+        <div className="px-5 py-24 md:container">
           <div className={cn(defaultSpaceY)}>
             {/* heading */}
             <div className={cn(defaultSpaceY, "space-y-5", "text-center")}>
