@@ -60,6 +60,7 @@ const features = [
 const defaultSpaceY = ["space-y-16"];
 const defaultMiniHead = ["uppercase", "font-semibold", "text-amber-500"];
 const defaultHead = ["font-semibold", "text-3xl"];
+const defaultGrid = ["grid", "grid-cols-4", "gap-5"];
 
 export default function Feature() {
   return (
@@ -77,7 +78,7 @@ export default function Feature() {
             </div>
 
             {/* content */}
-            <div className="grid grid-cols-4 gap-5">
+            <div className={cn(defaultGrid)}>
               {features.map((feature, index) => (
                 <div
                   key={index}
@@ -85,13 +86,12 @@ export default function Feature() {
                     defaultSpaceY,
                     "p-5",
                     "space-y-3",
-                    "text-center",
-                    ""
+                    "text-center"
                   )}
                 >
                   {/* title */}
                   <div className="grid gap-3 justify-center">
-                    <div className="mx-auto p-5 bg-amber-500/5 text-amber-500">
+                    <div className="mx-auto p-3 bg-amber-500/5 text-amber-500">
                       {feature.icon}
                     </div>
                     <h3 className="font-medium text-lg">{feature.title}</h3>

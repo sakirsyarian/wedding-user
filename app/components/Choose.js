@@ -35,11 +35,13 @@ const chooses = [
 const defaultSpaceY = ["space-y-16"];
 const defaultMiniHead = ["uppercase", "font-semibold", "text-amber-500"];
 const defaultHead = ["font-semibold", "text-3xl"];
+const defaultCard = ["text-slate-500", "shadow-md", "border-0"];
+const defaultGrid = ["grid", "grid-cols-4", "gap-5"];
 
 export default function Choose() {
   return (
     <>
-      <section id="choose" className="bg-amber-500/5">
+      <section id="choose">
         <div className="container py-24">
           <div className={cn(defaultSpaceY)}>
             {/* heading */}
@@ -51,17 +53,17 @@ export default function Choose() {
                 yang
                 <br />
                 berbahagia untuk membuat undangan pernikahan online dengan cepat
-                dan mudah.
+                dan mudah
               </p>
             </div>
 
             {/* content */}
-            <div className="grid grid-cols-4 gap-5">
+            <div className={cn(defaultGrid)}>
               {chooses.map((choose, index) => (
-                <Card key={index} className="text-slate-500 border-0">
+                <Card key={index} className={cn(defaultCard)}>
                   <CardHeader className="flex gap-3">
                     {choose.icon}
-                    <CardTitle>{choose.title}</CardTitle>
+                    <CardTitle className="text-xl">{choose.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p>{choose.description}</p>

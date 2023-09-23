@@ -29,6 +29,7 @@ const faq = [
 const defaultSpaceY = ["space-y-16"];
 const defaultMiniHead = ["uppercase", "font-semibold", "text-amber-500"];
 const defaultHead = ["font-semibold", "text-3xl"];
+const defaultGrid = ["grid", "grid-cols-4", "gap-5"];
 
 export default function Question() {
   return (
@@ -44,7 +45,7 @@ export default function Question() {
             </div>
 
             {/* content */}
-            <div className="grid grid-cols-1 gap-5">
+            <div className={cn(defaultGrid, "grid-cols-1")}>
               <Accordion type="single" collapsible>
                 {faq.map((item, index) => (
                   <AccordionItem key={index} value={`item-${index}`}>

@@ -25,6 +25,8 @@ const templates = [
 const defaultSpaceY = ["space-y-16"];
 const defaultMiniHead = ["uppercase", "font-semibold", "text-amber-500"];
 const defaultHead = ["font-semibold", "text-3xl"];
+const defaultCard = ["text-slate-500", "shadow-md", "border-0"];
+const defaultGrid = ["grid", "grid-cols-4", "gap-5"];
 
 export default function Template() {
   return (
@@ -43,9 +45,9 @@ export default function Template() {
             </div>
 
             {/* content */}
-            <div className="grid grid-cols-3 gap-5">
+            <div className={cn(defaultGrid, "grid-cols-3")}>
               {templates.map((template, index) => (
-                <Card key={index} className="text-slate-500 border-0">
+                <Card key={index} className={cn(defaultCard)}>
                   <CardHeader>
                     <Image
                       src={`/img/template/${template.source}`}

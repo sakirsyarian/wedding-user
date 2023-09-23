@@ -73,6 +73,7 @@ const menus = [
 
 // css
 const defaultSpaceY = ["space-y-10"];
+const defaultFlex = ["flex", "items-center", "justify-between", "gap-20"];
 
 export default function Footer() {
   return (
@@ -87,14 +88,14 @@ export default function Footer() {
               >
                 <h2 className="font-semibold text-2xl">Wedding</h2>
                 <p>
-                  Wedding adalah platform atau website undangan pernikahan
-                  online yang dapat membantu Anda membuat undangan pernikahan
-                  digital untuk pernikahan impian Anda.
+                  Wedding adalah platform undangan pernikahan online yang dapat
+                  membantu membuat undangan pernikahan digital untuk pernikahan
+                  impian Anda.
                 </p>
               </div>
 
               {/* menu */}
-              <div className="w-full flex justify-center gap-20">
+              <div className={cn(defaultFlex, "justify-center", "w-full")}>
                 {menus.map((menu, index) => (
                   <div
                     key={index}
@@ -103,7 +104,7 @@ export default function Footer() {
                     {/* title */}
                     <h3 className="font-medium">{menu.title}</h3>
                     {/* list */}
-                    <ul className="space-y-2">
+                    <ul className={cn(defaultSpaceY, "space-y-2")}>
                       {menu.listMenu.map((item, index) => (
                         <li key={index}>
                           <Link href={item.link}>{item.menu}</Link>
@@ -118,7 +119,7 @@ export default function Footer() {
             <Separator />
 
             {/* credit */}
-            <div className="py-5 flex items-center justify-between">
+            <div className={cn(defaultFlex, "py-5", "gap-0")}>
               <p>© {new Date().getFullYear()} Wedding. All rights reserved</p>
 
               {/* social */}

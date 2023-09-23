@@ -32,8 +32,8 @@ const prices = [
     tier: "Premium",
     description:
       "Paket dengan beberapa fitur berguna untuk undangan pernikahan online Anda.",
-    money: "Rp. 99.000",
-    diskon: "Rp. 79.000",
+    money: "Rp 99.000",
+    diskon: "Rp 79.000",
     features: [
       "Paket Basic Tambah ++",
       "10 Foto dan 1 Video",
@@ -49,7 +49,7 @@ const prices = [
     tier: "Platinum",
     description:
       "Paket rekomendasi dengan fitur paling lengkap untuk pernikahan impianmu.",
-    money: "Rp. 199.000",
+    money: "Rp 199.000",
     diskon: "Rp 149.000",
     features: [
       "Paket Premium Tambah ++",
@@ -66,6 +66,8 @@ const prices = [
 const defaultSpaceY = ["space-y-16"];
 const defaultMiniHead = ["uppercase", "font-semibold", "text-amber-500"];
 const defaultHead = ["font-semibold", "text-3xl"];
+const defaultCard = ["text-slate-500", "shadow-md", "border-0"];
+const defaultGrid = ["grid", "grid-cols-4", "gap-5"];
 
 export default function Price() {
   return (
@@ -86,22 +88,22 @@ export default function Price() {
             </div>
 
             {/* content */}
-            <div className="grid grid-cols-3 gap-5">
+            <div className={cn(defaultGrid, "grid-cols-3")}>
               {prices.map((price, index) => (
-                <Card key={index} className="text-slate-500 border-0">
+                <Card key={index} className={cn(defaultCard, "p-5")}>
                   <CardHeader className="space-y-5">
-                    <div className="space-y-2">
+                    <div className={cn(defaultSpaceY, "space-y-2")}>
                       <p className="font-semibold text-xl">{price.tier}</p>
                       <p>{price.description}</p>
                     </div>
-                    <div className="space-y-2">
+                    <div className={cn(defaultSpaceY, "space-y-2")}>
                       <CardDescription className="line-through text-red-500">
                         {price.diskon}
                       </CardDescription>
                       <CardTitle>{price.money}</CardTitle>
                     </div>
                   </CardHeader>
-                  <CardContent className="space-y-3">
+                  <CardContent className={cn(defaultSpaceY, "space-y-3")}>
                     {price.features.map((feature, index) => (
                       <div key={index} className="flex items-center gap-3">
                         <CheckCircle2 className="w-5 h-5 text-green-600" />
@@ -110,8 +112,8 @@ export default function Price() {
                     ))}
                   </CardContent>
                   <CardFooter>
-                    <Link href="/">
-                      <Button className="text-base" variant="primary">
+                    <Link href="/" className="w-full">
+                      <Button className="w-full text-base" variant="primary">
                         Pesan Sekarang
                       </Button>
                     </Link>

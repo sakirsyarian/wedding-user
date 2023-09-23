@@ -31,6 +31,8 @@ const tutorials = [
 const defaultSpaceY = ["space-y-16"];
 const defaultMiniHead = ["uppercase", "font-semibold", "text-amber-500"];
 const defaultHead = ["font-semibold", "text-3xl"];
+const defaultCard = ["text-slate-500", "shadow-md", "border-0"];
+const defaultGrid = ["grid", "grid-cols-4", "gap-5"];
 
 export default function Tutorial() {
   return (
@@ -59,14 +61,11 @@ export default function Tutorial() {
                   priority={true}
                 />
               </div>
-              <div className="grid grid-cols-2 gap-5">
+              <div className={cn(defaultGrid, "grid-cols-2")}>
                 {tutorials.map((tutorial, index) => (
-                  <Card
-                    key={index}
-                    className="text-slate-500 bg-amber-500/5 border-0"
-                  >
+                  <Card key={index} className={cn(defaultCard)}>
                     <CardHeader>
-                      <CardTitle className="text-amber-500">
+                      <CardTitle className="text-xl">
                         {tutorial.title}
                       </CardTitle>
                     </CardHeader>

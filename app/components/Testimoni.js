@@ -29,6 +29,8 @@ const testimonials = [
 const defaultSpaceY = ["space-y-16"];
 const defaultMiniHead = ["uppercase", "font-semibold", "text-amber-500"];
 const defaultHead = ["font-semibold", "text-3xl"];
+const defaultCard = ["text-slate-500", "shadow-md", "border-0"];
+const defaultGrid = ["grid", "grid-cols-4", "gap-5"];
 
 export default function Testimoni() {
   return (
@@ -48,9 +50,9 @@ export default function Testimoni() {
             </div>
 
             {/* content */}
-            <div className="grid grid-cols-3 gap-5">
+            <div className={cn(defaultGrid, "grid-cols-3")}>
               {testimonials.map((testimoni, index) => (
-                <Card key={index} className="text-slate-500 border-0">
+                <Card key={index} className={cn(defaultCard)}>
                   <CardHeader className="flex flex-row items-center gap-5">
                     <Image
                       src={`/img/testimoni/${testimoni.photo}`}
