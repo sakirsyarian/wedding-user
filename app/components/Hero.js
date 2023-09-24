@@ -40,14 +40,14 @@ export default function Hero() {
               <div className={cn(defaultSpaceY)}>
                 <div className={cn(defaultFlex, "justify-start", "gap-5")}>
                   <Link href="/" className="w-full md:w-auto">
-                    <Button className="w-full text-base" variant="primary">
+                    <Button className="w-full" variant="primary">
                       Buat Undangan
                     </Button>
                   </Link>
-                  <Link href="/" className="w-full md:w-auto">
-                    <Button className="w-full text-base" variant="ghostPrimary">
+                  <Link href="/#template" className="w-full md:w-auto">
+                    <Button className="w-full" variant="ghostPrimary">
+                      <ChevronsDown className="mr-2 h-4 w-4 animate-bounce" />
                       Lihat Tema
-                      <ChevronsDown className="ml-2 h-4 w-4 animate-bounce" />
                     </Button>
                   </Link>
                 </div>

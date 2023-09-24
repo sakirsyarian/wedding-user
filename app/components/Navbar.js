@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -50,17 +49,14 @@ export default function Navbar() {
 
             {/* auth */}
             <div className={cn(defaultFlex, "gap-5", "hidden", "md:flex")}>
-              <Link href="/">
-                <Button
-                  className="rounded-full text-base"
-                  variant="outlinePrimary"
-                >
+              <Link href="/login">
+                <Button className="rounded-full" variant="outlinePrimary">
                   Login
                 </Button>
               </Link>
 
-              <Link href="/">
-                <Button className="rounded-full text-base" variant="primary">
+              <Link href="/register">
+                <Button className="rounded-full" variant="primary">
                   Register
                 </Button>
               </Link>
@@ -92,7 +88,7 @@ export default function Navbar() {
                     <Link className={cn(defaultHover)} href="/#price">
                       Harga
                     </Link>
-                    <Link href="/">
+                    <Link href="/login">
                       <Button
                         className="w-full font-normal text-base"
                         variant="outlinePrimary"
@@ -100,7 +96,7 @@ export default function Navbar() {
                         Login
                       </Button>
                     </Link>
-                    <Link href="/">
+                    <Link href="/register">
                       <Button
                         className="w-full font-normal text-base"
                         variant="primary"

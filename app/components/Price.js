@@ -119,7 +119,7 @@ export default function Price() {
                   </CardContent>
                   <CardFooter>
                     <Link href="/" className="w-full">
-                      <Button className="w-full text-base" variant="primary">
+                      <Button className="w-full" variant="primary">
                         Pesan Sekarang
                       </Button>
                     </Link>

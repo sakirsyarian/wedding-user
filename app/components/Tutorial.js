@@ -56,8 +56,8 @@ export default function Tutorial() {
                 <Image
                   src="/img/hero/hero.png"
                   alt="hero"
-                  width={1000}
-                  height={1000}
+                  width={450}
+                  height={450}
                   priority={true}
                 />
               </div>
@@ -69,9 +69,7 @@ export default function Tutorial() {
                         {tutorial.title}
                       </CardTitle>
                     </CardHeader>
-                    <CardContent>
-                      <p>{tutorial.description}</p>
-                    </CardContent>
+                    <CardContent>{tutorial.description}</CardContent>
                   </Card>
                 ))}
               </div>
