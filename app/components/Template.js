@@ -72,9 +72,7 @@ export default function Template() {
             {/* more theme */}
             <div className="text-center">
               <Link href="/">
-                <Button className="text-base" variant="primary">
-                  Tema Lainnya
-                </Button>
+                <Button variant="primary">Tema Lainnya</Button>
               </Link>
             </div>
           </div>
