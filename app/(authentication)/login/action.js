@@ -22,9 +22,6 @@ export async function fetchLogin(event) {
   if (res.status === 403) {
     throw { name: "Forbidden", message: user.message };
   }
-
-  toast.success(user.message);
-  await new Promise((resolve) => setTimeout(resolve, 2000));
 }
 
 export async function errorLogin(error) {

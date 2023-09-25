@@ -7,7 +7,7 @@ export async function fetchLogin(event) {
   const formData = new FormData(form);
   const formJson = Object.fromEntries(formData.entries());
 
-  const res = await fetch("/api/login", {
+  const res = await fetch("/api/register", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -16,25 +16,20 @@ export async function fetchLogin(event) {
   });
 
   const user = await res.json();
-  if (res.status === 401) {
-    throw { name: "Unauthorized", message: user.message };
+  if (res.status === 400) {
+    throw { name: "Bad Request", message: user.message };
   }
-  if (res.status === 403) {
-    throw { name: "Forbidden", message: user.message };
-  }
-
-  toast.success(user.message);
-  await new Promise((resolve) => setTimeout(resolve, 2000));
 }
 
 export async function errorLogin(error) {
   await new Promise((resolve) => setTimeout(resolve, 2000));
 
-  if (error.name === "Unauthorized") {
-    return toast.error(error.message);
-  }
-  if (error.name === "Forbidden") {
-    return toast.error(error.message);
+  if (error.name === "Bad Request") {
+    return error.message.map((message) =>
+      toast.error(message, {
+        duration: 5000,
+      })
+    );
   }
 
   return toast.error(error.message);

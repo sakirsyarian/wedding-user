@@ -10,7 +10,7 @@ export default function SubmitButton({ loading }) {
           <p>Please wait</p>
         </>
       ) : (
-        <p>Submit</p>
+        <p>Register</p>
       )}
     </Button>
   );

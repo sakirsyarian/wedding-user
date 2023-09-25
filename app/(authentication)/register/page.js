@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 
 import { fetchLogin, errorLogin } from "./action";
 import SubmitButton from "./button";
@@ -42,7 +42,12 @@ export default function Login() {
     try {
       setLoading(true);
       await fetchLogin(event);
-      router.push("/");
+
+      toast.success("Registrasi berhasil");
+      toast.success("Silakan login");
+      await new Promise((resolve) => setTimeout(resolve, 3000));
+
+      router.push("/login");
     } catch (error) {
       await errorLogin(error);
     } finally {
@@ -61,11 +66,11 @@ export default function Login() {
                 Wedding
               </Link>
               <div className={cn(defaultSpaceY, "space-y-1")}>
-                <CardTitle className="text-2xl text-slate-500/80">
-                  Petualangan dimulai di sini 🚀
+                <CardTitle className="text-xl text-slate-500/80">
+                  Buat akun dulu 🚀
                 </CardTitle>
                 <CardDescription>
-                  Jadikan manajemen aplikasi Anda mudah dan menyenangkan!
+                  Ayo buat akun wedding supaya bisa bikin undangan gratis
                 </CardDescription>
               </div>
             </CardHeader>
@@ -91,6 +96,10 @@ export default function Login() {
                 </div>
               </div>
               <div className="grid gap-2">
+                <Label htmlFor="name">Nama Panggilan</Label>
+                <Input id="name" name="name" type="text" required />
+              </div>
+              <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>
                 <Input id="email" name="email" type="email" required />
               </div>
@@ -102,9 +111,9 @@ export default function Login() {
             <CardFooter className="flex flex-col gap-5">
               <SubmitButton loading={loading} />
               <div className="text-sm">
-                Baru di platform kami?{" "}
-                <Link href="/register" className="text-amber-500">
-                  Buat akun
+                Sudah memiliki akun?{" "}
+                <Link href="/login" className="text-amber-500">
+                  Masuk sini
                 </Link>
               </div>
             </CardFooter>

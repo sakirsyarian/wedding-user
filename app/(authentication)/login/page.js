@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 
 import { fetchLogin, errorLogin } from "./action";
 import SubmitButton from "./button";
@@ -42,6 +42,10 @@ export default function Login() {
     try {
       setLoading(true);
       await fetchLogin(event);
+
+      toast.success("Login berhasil");
+      await new Promise((resolve) => setTimeout(resolve, 3000));
+
       router.push("/");
     } catch (error) {
       await errorLogin(error);
@@ -61,11 +65,11 @@ export default function Login() {
                 Wedding
               </Link>
               <div className={cn(defaultSpaceY, "space-y-1")}>
-                <CardTitle className="text-2xl text-slate-500/80">
-                  Haloo 👋🏻
+                <CardTitle className="text-xl text-slate-500/80">
+                  Ayo masuk sini 👋🏻
                 </CardTitle>
                 <CardDescription>
-                  Silakan masuk ke akun Anda dan mulai petualangannya
+                  Masuk akun wedding dulu ya untuk buat undangan gratis
                 </CardDescription>
               </div>
             </CardHeader>
@@ -102,7 +106,7 @@ export default function Login() {
             <CardFooter className="flex flex-col gap-5">
               <SubmitButton loading={loading} />
               <div className="text-sm">
-                Baru di platform kami?{" "}
+                Belum punya akun?{" "}
                 <Link href="/register" className="text-amber-500">
                   Buat akun
                 </Link>
