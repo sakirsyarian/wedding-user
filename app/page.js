@@ -1,5 +1,3 @@
-import { cn } from "@/lib/utils";
-
 import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
 import Choose from "./components/Choose";
