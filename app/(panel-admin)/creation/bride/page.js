@@ -1,8 +1,9 @@
+import Link from "next/link";
+
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 
 // data
 const male = [
@@ -56,18 +57,16 @@ const defaultCard = ["p-10", "rounded-lg", "shadow-md", "bg-white"];
 const defaultFlex = ["flex", "items-center", "justify-between", "gap-10"];
 const defaultGrid = ["w-full", "grid", "items-center", "gap-10"];
 
-export default function Creation() {
+export default function Bride() {
   return (
     <>
-      <section id="creation">
+      <section id="bride">
         <div className={cn(defaultCard)}>
           <div className="space-y-10">
             <div className={cn(defaultFlex)}>
               {/* male */}
               <div className={cn(defaultGrid)}>
-                <h2 className="font-semibold text-lg text-center">
-                  Mempelai Pria
-                </h2>
+                <h2 className="font-semibold text-lg">Mempelai Pria</h2>
 
                 <div className="space-y-5">
                   {/* upload */}
@@ -93,9 +92,7 @@ export default function Creation() {
 
               {/* female */}
               <div className={cn(defaultGrid)}>
-                <h2 className="font-semibold text-lg text-center">
-                  Mempelai Wanita
-                </h2>
+                <h2 className="font-semibold text-lg">Mempelai Wanita</h2>
 
                 <div className="space-y-5">
                   {/* upload */}
@@ -124,9 +121,12 @@ export default function Creation() {
               </div>
             </div>
 
-            <div className="text-right">
-              <Link href="/creation/event">
-                <Button variant="primary">Selanjutnya</Button>
+            {/* action */}
+            <div>
+              <Link href="/creation/bride">
+                <Button variant="primary" className="w-full">
+                  Simpan
+                </Button>
               </Link>
             </div>
           </div>

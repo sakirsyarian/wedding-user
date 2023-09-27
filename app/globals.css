@@ -3,5 +3,17 @@
 @tailwind utilities;
 
 html {
-  @apply scroll-smooth
+  @apply scroll-smooth;
+}
+
+.react-datepicker__aria-live {
+  @apply hidden;
+}
+
+.react-datepicker__time-container {
+  @apply my-3 p-5 space-y-4 bg-white h-60 w-32 overflow-auto;
+}
+
+.react-datepicker__time-list {
+  @apply space-y-3 cursor-pointer text-sm;
 }

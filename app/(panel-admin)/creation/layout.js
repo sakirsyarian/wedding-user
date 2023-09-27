@@ -23,7 +23,7 @@ const menus = [
 
 // css
 const defaultSpaceY = ["space-y-16"];
-const defaultFlex = ["flex", "items-center", "justify-between"];
+const defaultFlex = ["flex", "items-center", "justify-evenly"];
 const defaultCard = ["p-6", "rounded-lg", "shadow-md", "bg-white"];
 
 export default function LayoutCreation({ children }) {
