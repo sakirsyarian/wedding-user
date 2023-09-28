@@ -6,6 +6,7 @@ html {
   @apply scroll-smooth;
 }
 
+/* LIST TIME */
 .react-datepicker__aria-live {
   @apply hidden;
 }
@@ -16,4 +17,19 @@ html {
 
 .react-datepicker__time-list {
   @apply space-y-3 cursor-pointer text-sm;
+}
+
+/* HIDE RADIO */
+.radio-input {
+  @apply absolute w-0 h-0 opacity-0;
+}
+
+/* IMAGE STYLES */
+.radio-input + .radio-image {
+  @apply cursor-pointer;
+}
+
+/* CHECKED STYLES */
+[data-state="checked"] + label {
+  @apply outline outline-offset-2 outline-2 rounded-lg;
 }
