@@ -63,6 +63,45 @@ const components = [
   },
 ];
 
+const menus = [
+  {
+    title: "Bride",
+    href: "/bride",
+    description:
+      "A modal dialog that interrupts the user with important content and expects a response.",
+  },
+  {
+    title: "Event",
+    href: "/",
+    description:
+      "A modal dialog that interrupts the user with important content and expects a response.",
+  },
+  {
+    title: "Gift",
+    href: "/",
+    description:
+      "A modal dialog that interrupts the user with important content and expects a response.",
+  },
+  {
+    title: "Gallery",
+    href: "/",
+    description:
+      "A modal dialog that interrupts the user with important content and expects a response.",
+  },
+  {
+    title: "Music",
+    href: "/",
+    description:
+      "A modal dialog that interrupts the user with important content and expects a response.",
+  },
+  {
+    title: "Story",
+    href: "/",
+    description:
+      "A modal dialog that interrupts the user with important content and expects a response.",
+  },
+];
+
 // css
 const defaultFlex = ["flex", "items-center", "gap-2"];
 
@@ -125,6 +164,29 @@ export default function SubMenuNavbar() {
                 ))}
               </ul>
             </NavigationMenuContent>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <NavigationMenuTrigger>Weddings</NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                {menus.map((menu) => (
+                  <ListItem
+                    key={menu.title}
+                    title={menu.title}
+                    href={menu.href}
+                  >
+                    {menu.description}
+                  </ListItem>
+                ))}
+              </ul>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <Link href="/settings" legacyBehavior passHref>
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                Settings
+              </NavigationMenuLink>
+            </Link>
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
