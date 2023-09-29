@@ -95,8 +95,8 @@ const menus = [
       "A modal dialog that interrupts the user with important content and expects a response.",
   },
   {
-    title: "Story",
-    href: "/dashboard/story",
+    title: "Theme",
+    href: "/dashboard/theme",
     description:
       "A modal dialog that interrupts the user with important content and expects a response.",
   },
