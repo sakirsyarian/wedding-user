@@ -66,37 +66,37 @@ const components = [
 const menus = [
   {
     title: "Bride",
-    href: "/bride",
+    href: "/dashboard/bride",
     description:
       "A modal dialog that interrupts the user with important content and expects a response.",
   },
   {
     title: "Event",
-    href: "/",
+    href: "/dashboard/event",
     description:
       "A modal dialog that interrupts the user with important content and expects a response.",
   },
   {
     title: "Gift",
-    href: "/",
+    href: "/dashboard/gift",
     description:
       "A modal dialog that interrupts the user with important content and expects a response.",
   },
   {
     title: "Gallery",
-    href: "/",
+    href: "/dashboard/gallery",
     description:
       "A modal dialog that interrupts the user with important content and expects a response.",
   },
   {
     title: "Music",
-    href: "/",
+    href: "/dashboard/music",
     description:
       "A modal dialog that interrupts the user with important content and expects a response.",
   },
   {
     title: "Story",
-    href: "/",
+    href: "/dashboard/story",
     description:
       "A modal dialog that interrupts the user with important content and expects a response.",
   },
