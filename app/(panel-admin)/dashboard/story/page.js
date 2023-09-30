@@ -2,6 +2,7 @@ import { cn } from "@/lib/utils";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
 import {
   Card,
   CardContent,
@@ -11,16 +12,30 @@ import {
 } from "@/components/ui/card";
 
 // data
-const gifts = [
+const stories = [
   {
+    title: "Perkenalan",
     forms: [
-      { title: "Platform", name: "platform", placeholder: "Contoh : BANK BCA" },
       {
-        title: "No Rekening",
-        name: "accountNumber",
-        placeholder: "Contoh : 123456789",
+        title: "Foto",
+        name: "intro",
+        type: "file",
       },
     ],
+    name: "description",
+    placeholder: "Contoh : Pada pandangan pertama kami bertemu di rumahnya",
+  },
+  {
+    title: "Pacaran",
+    forms: [
+      {
+        title: "Foto",
+        name: "intro",
+        type: "file",
+      },
+    ],
+    name: "description",
+    placeholder: "Contoh : Pada pandangan pertama kami bertemu di rumahnya",
   },
 ];
 
@@ -30,30 +45,38 @@ const defaultCard = ["text-slate-500", "shadow-md", "border-0"];
 const defaultCardImage = ["text-slate-500", "shadow-none", "border-0"];
 const defaultGrid = ["grid", "items-center", "gap-10"];
 
-export default function Gift() {
+export default function Story() {
   return (
     <>
-      <section id="gift">
+      <section id="story">
         <div className="px-5 py-10 md:container">
           <div className={cn(defaultSpaceY)}>
             <Card className={cn(defaultCard)}>
               <CardHeader>
-                <CardTitle>Gift</CardTitle>
+                <CardTitle>Story</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-5">
-                {gifts.map((gift, indexGift) => (
-                  <div key={indexGift} className="space-y-5">
-                    {gift.forms.map((form, index) => (
+              <CardContent className="space-y-10">
+                {stories.map((story, indexStory) => (
+                  <div key={indexStory} className="space-y-5">
+                    <h2>{story.title}</h2>
+                    {story.forms.map((form, index) => (
                       <div key={index} className={cn(defaultGrid, "gap-3")}>
                         <Label htmlFor={form.name}>{form.title}</Label>
                         <Input
-                          type="text"
+                          type={form.type}
                           id={form.name}
                           name={form.name}
-                          placeholder={form.placeholder}
                         />
                       </div>
                     ))}
+                    <div className={cn(defaultGrid, "gap-3")}>
+                      <Label htmlFor={story.name}>Deskripsi</Label>
+                      <Textarea
+                        id={story.name}
+                        name={story.name}
+                        placeholder={story.placeholder}
+                      />
+                    </div>
                   </div>
                 ))}
               </CardContent>
