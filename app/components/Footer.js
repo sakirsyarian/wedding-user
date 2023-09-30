@@ -3,6 +3,7 @@ import { Instagram, Facebook, Twitter } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
+import Image from "next/image";
 
 // data
 const menus = [
@@ -99,7 +100,14 @@ export default function Footer() {
                   "space-y-5"
                 )}
               >
-                <h2 className="font-semibold text-2xl">Wedding</h2>
+                <Link href="/">
+                  <Image
+                    src="/img/logo/andaring.png"
+                    width={200}
+                    height={200}
+                    alt="andaring"
+                  />
+                </Link>
                 <p>
                   Wedding adalah platform undangan pernikahan online yang dapat
                   membantu membuat undangan pernikahan digital untuk pernikahan

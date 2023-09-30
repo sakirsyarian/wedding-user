@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Menu } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -24,8 +25,16 @@ export default function Navbar() {
           <div className={cn(defaultFlex, "text-slate-600")}>
             {/* brand */}
             <div className="font-bold uppercase">
-              <Link href="/" className={cn(defaultColor, "text-lg")}>
-                Wedding
+              <Link
+                href="/"
+                className={cn(defaultFlex, defaultColor, "gap-2", "text-xl")}
+              >
+                <Image
+                  src="/img/logo/andaring.png"
+                  width={150}
+                  height={150}
+                  alt="andaring"
+                />
               </Link>
             </div>
 

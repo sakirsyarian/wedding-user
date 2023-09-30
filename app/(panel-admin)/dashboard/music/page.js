@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 import { cn } from "@/lib/utils";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -7,23 +5,23 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import {
   Card,
   CardContent,
-  CardHeader,
   CardFooter,
+  CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 
 // data
-const themes = [
+const musics = [
   {
-    title: "Pastel Floral",
+    title: "Marry Your Daughter - Brian McKnight",
     source: "pastel.png",
   },
   {
-    title: "Sparkling Flower",
+    title: "Shane Filan - Beautiful In White",
     source: "sparkling.png",
   },
   {
-    title: "Sweet Flower",
+    title: "Christina Perri - A Thousand Years",
     source: "sweet.png",
   },
 ];
@@ -34,45 +32,43 @@ const defaultCard = ["text-slate-500", "shadow-md", "border-0"];
 const defaultCardImage = ["text-slate-500", "shadow-none", "border-0"];
 const defaultGrid = ["grid", "items-center", "gap-10"];
 
-export default function Theme() {
+export default function Music() {
   return (
     <>
-      <section id="theme">
+      <section id="music">
         <div className="px-5 py-10 md:container">
           <div className={cn(defaultSpaceY)}>
             <Card className={cn(defaultCard)}>
-              <CardHeader className="space-y-1">
-                <CardTitle className="text-xl">Tema</CardTitle>
+              <CardHeader>
+                <CardTitle>Musik</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4">
+              <CardContent>
                 <RadioGroup
                   defaultValue="option-0"
                   className="flex items-center gap-5"
                 >
-                  {themes.map((theme, index) => (
+                  {musics.map((music, index) => (
                     <div key={index} className="flex items-center space-x-2">
                       <RadioGroupItem
-                        value={`option-${index}`}
                         id={`option-${index}`}
-                        name={`option-${index}`}
+                        value={`option-${index}`}
                         className="radio-input"
                       />
                       <Label
                         htmlFor={`option-${index}`}
-                        className="radio-image"
+                        className="radio-image rounded-md border"
                       >
                         <Card className={cn(defaultCardImage)}>
                           <CardHeader>
-                            <Image
-                              src={`/img/template/${theme.source}`}
-                              width={500}
-                              height={500}
-                              alt={theme.title}
-                            />
+                            <CardTitle className="font-normal text-base">
+                              {music.title}
+                            </CardTitle>
                           </CardHeader>
-                          <CardContent>
-                            <p className="text-lg">{theme.title}</p>
-                          </CardContent>
+                          <CardFooter>
+                            <Button size="sm" className="w-full">
+                              Play
+                            </Button>
+                          </CardFooter>
                         </Card>
                       </Label>
                     </div>
