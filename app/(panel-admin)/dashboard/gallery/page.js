@@ -1,4 +1,6 @@
 import { cn } from "@/lib/utils";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -7,6 +9,15 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+
+// data
+const forms = [
+  { name: "imageOne", title: "Gambar Satu" },
+  { name: "imageTwo", title: "Gambar Dua" },
+  { name: "imageThree", title: "Gambar Tiga" },
+  { name: "imageFour", title: "Gambar Empat" },
+  { name: "imageFive", title: "Gambar Lima" },
+];
 
 // css
 const defaultSpaceY = ["space-y-10"];
@@ -24,7 +35,14 @@ export default function Gallery() {
               <CardHeader>
                 <CardTitle>Gallery</CardTitle>
               </CardHeader>
-              <CardContent></CardContent>
+              <CardContent className="space-y-5">
+                {forms.map((form, index) => (
+                  <div key={index} className={cn(defaultGrid, "gap-3")}>
+                    <Label htmlFor={form.name}>{form.title}</Label>
+                    <Input type={"file"} id={form.name} name={form.name} />
+                  </div>
+                ))}
+              </CardContent>
               <CardFooter></CardFooter>
             </Card>
 

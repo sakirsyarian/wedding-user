@@ -2,7 +2,13 @@ import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardFooter,
+  CardTitle,
+} from "@/components/ui/card";
 
 // data
 const brides = [
@@ -131,7 +137,7 @@ export default function Bride() {
                   <CardHeader className="space-y-1">
                     <CardTitle className="text-xl">{bride.heading}</CardTitle>
                   </CardHeader>
-                  <CardContent className="space-y-4">
+                  <CardContent className="space-y-5">
                     {bride.forms.map((item, index) => (
                       <div key={index} className={cn(defaultGrid, "gap-3")}>
                         <Label htmlFor={item.name}>{item.title}</Label>
@@ -144,6 +150,7 @@ export default function Bride() {
                       </div>
                     ))}
                   </CardContent>
+                  <CardFooter></CardFooter>
                 </Card>
               ))}
             </div>
