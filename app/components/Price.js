@@ -20,52 +20,53 @@ const prices = [
     money: "Gratis",
     diskon: "",
     features: [
-      "Amplop Digital",
-      "Hitung Mundur Acara",
-      "Kutipan Kata",
-      "Musik Latar",
-      "3 Foto dan 1 Video",
-      "Aktif 2 Hari",
+      "Google Maps",
+      "Google Calendar",
+      "Unlimited Tamu",
+      "Countdown Acara",
+      "Masa Aktif Selamanya",
     ],
   },
   {
     tier: "Premium",
     description:
-      "Paket dengan beberapa fitur berguna untuk undangan pernikahan online Anda.",
+      "Paket yang mempunyai fitur berguna untuk undangan pernikahan online.",
     money: "Rp 99.000",
     diskon: "Rp 79.000",
     features: [
-      "Paket Basic Tambah ++",
-      "10 Foto dan 1 Video",
-      "Aktif 3 Bulan",
-      "Google Maps",
-      "Google Maps",
-      "Cerita Cinta",
-      "Unlimited Tamu",
-      "Buku Tamu",
+      "Paket Basic ++",
+      "Love Story",
+      "Amplop Digital",
+      "Background Musik",
+      "Konfirmasi Kehadiran",
     ],
   },
   {
     tier: "Platinum",
     description:
-      "Paket rekomendasi dengan fitur paling lengkap untuk pernikahan impianmu.",
+      "Paket rekomendasi dengan fitur lengkap untuk pernikahan impianmu.",
     money: "Rp 199.000",
     diskon: "Rp 149.000",
     features: [
-      "Paket Premium Tambah ++",
-      "30 Foto 3 Video",
-      "Aktif 1 Tahun",
-      "Share Whatsapp",
+      "Paket Premium ++",
       "Live Streaming",
-      "Download Amplop",
+      "Daftar Tamu",
+      "Share WhatsApp",
+      "Gallery Foto & Video",
+      "Statistik Pengunjung",
     ],
   },
 ];
 
 // css
 const defaultSpaceY = ["space-y-16"];
-const defaultMiniHead = ["uppercase", "font-semibold", "text-amber-500"];
-const defaultHead = ["font-semibold", "text-3xl"];
+const defaultMiniHead = ["uppercase", "font-semibold", "text-primary"];
+const defaultHead = [
+  "font-semibold",
+  "text-2xl",
+  "md:text-3xl",
+  "text-tertiary",
+];
 const defaultCard = ["text-slate-500", "shadow-md", "border-0"];
 const defaultGrid = [
   "grid",
@@ -87,9 +88,10 @@ export default function Price() {
               <h2 className={cn(defaultHead)}>Harga Undangan Digital</h2>
               <p>
                 Pilih paket undangan pernikahan online sesuai dengan
-                kebutuhanmu,
+                kebutuhanmu.
                 <br className="hidden md:block" />
-                tenang harganya terjangkau banget
+                Anda dapat merubah jenis paket kapanpun, jadi coba gratis saja
+                dulu.
               </p>
             </div>
 

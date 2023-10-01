@@ -23,8 +23,13 @@ const templates = [
 
 // css
 const defaultSpaceY = ["space-y-16"];
-const defaultMiniHead = ["uppercase", "font-semibold", "text-amber-500"];
-const defaultHead = ["font-semibold", "text-3xl"];
+const defaultMiniHead = ["uppercase", "font-semibold", "text-primary"];
+const defaultHead = [
+  "font-semibold",
+  "text-2xl",
+  "md:text-3xl",
+  "text-tertiary",
+];
 const defaultCard = ["text-slate-500", "shadow-md", "border-0"];
 const defaultGrid = [
   "grid",
@@ -37,7 +42,7 @@ const defaultGrid = [
 export default function Template() {
   return (
     <>
-      <section id="template">
+      <section id="theme">
         <div className="px-5 py-24 md:container">
           <div className={cn(defaultSpaceY)}>
             {/* heading */}
@@ -45,8 +50,9 @@ export default function Template() {
               <p className={cn(defaultMiniHead)}>Pilihan Tema</p>
               <h2 className={cn(defaultHead)}>Memilih Tema Pernikahan</h2>
               <p>
-                Pilih dan gunakan tema undangan pernikahan yang menarik serta
-                unik
+                Silakan pilih beragam tema undangan pernikahan yang telah kami
+                sediakan <br className="hidden md:block" /> sesuai selera dan
+                telah kami desain secara special khusus untuk Anda
               </p>
             </div>
 

@@ -19,20 +19,22 @@ const defaultSpaceY = ["space-y-10"];
 export default function Hero() {
   return (
     <>
-      <section id="hero">
+      <section id="hero" className="bg-[#FBF0B2]/30">
         <div className="px-5 py-24 md:container">
           <div className={cn(defaultFlex, "flex-col-reverse")}>
             {/* left */}
             <div className={cn(defaultSpaceY)}>
               {/* description */}
               <div className={cn(defaultSpaceY, "space-y-5")}>
-                <h1 className="font-semibold text-4xl text-slate-600">
-                  Undangan Website
+                <h1 className="font-semibold text-tertiary text-3xl md:text-4xl leading-10 md:leading-none">
+                  <span className="text-primary">Undangan</span> Pernikahan
+                  Online
                 </h1>
-                <p>
-                  Undang orang terdekatmu dengan mudah, praktis dan tanpa ada
-                  batasan menggunakan undangan website kekinian dari undangan
-                  Weeding
+                <p className="leading-7">
+                  Buat undangan pernikahan digital Anda yang elegan, modern, &
+                  <br className="hidden md:block" />
+                  ramah lingkungan. Ciptakan momen kebahagian Anda bersama
+                  Andaring. Hemat kertas, hemat uang & tanpa repot!
                 </p>
               </div>
 
@@ -45,7 +47,10 @@ export default function Hero() {
                     </Button>
                   </Link>
                   <Link href="/#template" className="w-full md:w-auto">
-                    <Button className="w-full" variant="ghostPrimary">
+                    <Button
+                      className="w-full text-primary hover:text-primary hover:bg-white"
+                      variant="ghost"
+                    >
                       <ChevronsDown className="mr-2 h-4 w-4 animate-bounce" />
                       Lihat Tema
                     </Button>
