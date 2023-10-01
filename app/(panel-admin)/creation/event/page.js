@@ -45,7 +45,12 @@ export default function Event() {
   // data
   const events = [
     {
-      title: "Akad Nikah",
+      title: "Acara",
+      important: true,
+      heading: {
+        name: "ceremonyHeading",
+        placeholder: "Contoh : Akad Nikah",
+      },
       date: {
         dateEvent: ceremonyDate,
         setDateEvent: setceremonyDate,
@@ -68,7 +73,11 @@ export default function Event() {
       },
     },
     {
-      title: "Resepsi",
+      title: "Optional",
+      heading: {
+        name: "receptionHeading",
+        placeholder: "Contoh : Resepsi",
+      },
       date: {
         dateEvent: reseptionDate,
         setDateEvent: setReseptionDate,
@@ -99,11 +108,35 @@ export default function Event() {
           <div className="space-y-10">
             {events.map((event, index) => (
               <div key={index} className={cn(defaultGrid)}>
-                <h2 className="font-semibold text-lg">{event.title}</h2>
+                <h2 className="flex items-center gap-2 font-semibold text-lg">
+                  {event.title}
+                  {event.important && (
+                    <p className="text-xs text-red-500">wajib diisi</p>
+                  )}
+                </h2>
 
                 <div className="space-y-5">
+                  {/* title */}
+                  <div className={cn(defaultGrid, "gap-3")}>
+                    <Label htmlFor={event.heading.name}>Judul Acara</Label>
+                    <Input
+                      id={event.heading.name}
+                      name={event.heading.name}
+                      type="text"
+                      placeholder={event.heading.placeholder}
+                    />
+                  </div>
+
                   {/* date time */}
-                  <div className={cn(defaultGrid, "grid-cols-4", "gap-5")}>
+                  <div
+                    className={cn(
+                      defaultGrid,
+                      "grid-cols-1",
+                      "md:grid-cols-2",
+                      "lg:grid-cols-4",
+                      "gap-5"
+                    )}
+                  >
                     {/* date */}
                     <div className={cn(defaultGrid, "gap-0")}>
                       <Label htmlFor={event.date.dateEvent} className="mb-3">

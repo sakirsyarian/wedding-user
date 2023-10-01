@@ -25,8 +25,7 @@ const themes = [
 
 // css
 const defaultCard = ["p-10", "rounded-lg", "shadow-md", "bg-white"];
-const defaultCardImage = ["text-slate-500", "shadow-md", "border-0"];
-const defaultFlex = ["flex", "items-center", "justify-between", "gap-10"];
+const defaultCardImage = ["text-slate-500", "shadow-none"];
 const defaultGrid = ["w-full", "grid", "items-center", "gap-10"];
 
 export default function Theme() {
@@ -42,7 +41,12 @@ export default function Theme() {
                 <div className={cn(defaultGrid)}>
                   <RadioGroup
                     defaultValue="option-0"
-                    className="flex items-center gap-5"
+                    className={cn(
+                      defaultGrid,
+                      "grid-cols-1",
+                      "md:grid-cols-3",
+                      "gap-5"
+                    )}
                   >
                     {themes.map((theme, index) => (
                       <div key={index} className="flex items-center space-x-2">

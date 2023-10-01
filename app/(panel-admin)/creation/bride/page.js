@@ -63,7 +63,7 @@ export default function Bride() {
       <section id="bride">
         <div className={cn(defaultCard)}>
           <div className="space-y-10">
-            <div className={cn(defaultFlex)}>
+            <div className={cn(defaultGrid, "md:grid-cols-2")}>
               {/* male */}
               <div className={cn(defaultGrid)}>
                 <h2 className="font-semibold text-lg">Mempelai Pria</h2>

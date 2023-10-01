@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -20,7 +21,12 @@ export default function MenuNavbar() {
       {/* brand */}
       <div className="font-bold uppercase">
         <Link href="/" className={cn(defaultColor, "text-xl")}>
-          Wedding
+          <Image
+            src="/img/logo/andaring.png"
+            width={150}
+            height={150}
+            alt="andaring"
+          />
         </Link>
       </div>
 
@@ -33,7 +39,7 @@ export default function MenuNavbar() {
               <AvatarFallback>S</AvatarFallback>
             </Avatar>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="p-3 w-52 space-y-2">
+          <DropdownMenuContent className="mr-5 md:mr-0 p-3 w-52 space-y-2">
             <DropdownMenuLabel>Ahmad Sarian</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem>Profile</DropdownMenuItem>
