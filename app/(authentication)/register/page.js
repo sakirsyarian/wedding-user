@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -21,18 +23,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import Link from "next/link";
 
 // css
 const defaultSpaceY = ["pace-y-5"];
 const defaultCard = ["text-slate-500", "shadow-md", "border-0"];
 const defaultFlex = ["flex", "items-center", "justify-center", "gap-5"];
-const defaultTitle = [
-  "font-semibold",
-  "text-center",
-  "text-3xl",
-  "text-slate-500",
-];
+const defaultTitle = ["mx-auto", "font-semibold", "text-3xl", "text-slate-500"];
 
 export default function Login() {
   const router = useRouter();
@@ -61,16 +57,21 @@ export default function Login() {
       <div className={cn(defaultFlex, "p-5", "min-h-screen")}>
         <form onSubmit={handleSubmit} className={cn(defaultSpaceY)}>
           <Card className={cn(defaultCard)}>
-            <CardHeader className="space-y-5">
+            <CardHeader className="space-y-8">
               <Link href="/" className={cn(defaultTitle)}>
-                Wedding
+                <Image
+                  src="/img/logo/andaring.png"
+                  width={200}
+                  height={200}
+                  alt="andaring"
+                />
               </Link>
               <div className={cn(defaultSpaceY, "space-y-1")}>
-                <CardTitle className="text-xl text-slate-500/80">
+                <CardTitle className="text-xl text-tertiary">
                   Buat akun dulu 🚀
                 </CardTitle>
                 <CardDescription>
-                  Ayo buat akun wedding supaya bisa bikin undangan gratis
+                  Ayo buat akun Andaring supaya bisa bikin undangan gratis
                 </CardDescription>
               </div>
             </CardHeader>
@@ -96,23 +97,51 @@ export default function Login() {
                 </div>
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="name">Nama Panggilan</Label>
-                <Input id="name" name="name" type="text" required />
+                <Label htmlFor="username">Username</Label>
+                <Input
+                  id="username"
+                  name="username"
+                  type="text"
+                  placeholder="Contoh : sarian"
+                  required
+                />
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="whatsapp">Whatsapp</Label>
+                <Input
+                  id="whatsapp"
+                  name="whatsapp"
+                  type="text"
+                  placeholder="Contoh : 08585721364"
+                  required
+                />
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>
-                <Input id="email" name="email" type="email" required />
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="Contoh : sarian@gmail.com"
+                  required
+                />
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="password">Password</Label>
-                <Input id="password" name="password" type="password" required />
+                <Input
+                  id="password"
+                  name="password"
+                  type="password"
+                  placeholder="Contoh : Sari@n_46"
+                  required
+                />
               </div>
             </CardContent>
             <CardFooter className="flex flex-col gap-5">
               <SubmitButton loading={loading} />
               <div className="text-sm">
                 Sudah memiliki akun?{" "}
-                <Link href="/login" className="text-amber-500">
+                <Link href="/login" className="text-secondary">
                   Masuk sini
                 </Link>
               </div>
