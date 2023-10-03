@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
 
-import { fetchLogin, errorLogin } from "./action";
+import { fetchRegister, errorRegister } from "./action";
 import SubmitButton from "./button";
 
 import { cn } from "@/lib/utils";
@@ -37,7 +37,7 @@ export default function Login() {
   async function handleSubmit(event) {
     try {
       setLoading(true);
-      await fetchLogin(event);
+      await fetchRegister(event);
 
       toast.success("Registrasi berhasil");
       toast.success("Silakan login");
@@ -45,7 +45,7 @@ export default function Login() {
 
       router.push("/login");
     } catch (error) {
-      await errorLogin(error);
+      await errorRegister(error);
     } finally {
       setLoading(false);
     }
@@ -107,10 +107,10 @@ export default function Login() {
                 />
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="whatsapp">Whatsapp</Label>
+                <Label htmlFor="phoneNumber">Whatsapp</Label>
                 <Input
-                  id="whatsapp"
-                  name="whatsapp"
+                  id="phoneNumber"
+                  name="phoneNumber"
                   type="text"
                   placeholder="Contoh : 08585721364"
                   required

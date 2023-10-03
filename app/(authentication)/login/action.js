@@ -22,6 +22,8 @@ export async function fetchLogin(event) {
   if (res.status === 403) {
     throw { name: "Forbidden", message: user.message };
   }
+
+  // localStorage.setItem("act", user.accessToken);
 }
 
 export async function errorLogin(error) {

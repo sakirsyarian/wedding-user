@@ -1,8 +1,8 @@
 import Link from "next/link";
-import Image from "next/image";
 import { Flower, Palette, CalendarDays } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import MenuNavbar from "../dashboard/components/Navbar/menu";
 
 // data
@@ -45,7 +45,7 @@ export default function LayoutCreation({ children }) {
             {/* step */}
             <ul className={cn(defaultFlex, "gap-7", "md:gap-14")}>
               {menus.map((menu, index) => (
-                <li key={index} className="hover:text-primary">
+                <li key={index} className="hover:text-tertiary">
                   <Link href={`/creation/${menu.link}`} className={menu.title}>
                     <div className={cn(defaultFlex, "gap-2")}>
                       {menu.icon}
@@ -55,6 +55,13 @@ export default function LayoutCreation({ children }) {
                 </li>
               ))}
             </ul>
+
+            <Alert className="space-y-2 text-amber-500 border-amber-500">
+              <AlertTitle>Informasi!</AlertTitle>
+              <AlertDescription>
+                Data pada form ini bisa kalian ubah nanti
+              </AlertDescription>
+            </Alert>
           </div>
           {children}
         </div>

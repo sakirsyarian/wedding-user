@@ -23,14 +23,25 @@ export async function POST(request) {
       name: "rft",
       value: user.refresh_token,
       httpOnly: true,
-      path: "/",
+      secure: true,
+    });
+    cookies().set({
+      name: "act",
+      value: user.access_token,
+      httpOnly: true,
       secure: true,
     });
 
-    return new Response(JSON.stringify({ message: "Login berhasil" }), {
-      status: 200,
-      headers: { Authorization: `Bearer ${user.access_token}` },
-    });
+    return new Response(
+      JSON.stringify({
+        accessToken: user.access_token,
+        message: "Login berhasil",
+      }),
+      {
+        status: 200,
+        headers: { authorization: `Bearer ${user.access_token}` },
+      }
+    );
   } catch (error) {
     if (error.name === "Unauthorized") {
       return new Response(JSON.stringify(error), {

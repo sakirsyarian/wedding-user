@@ -1,6 +1,6 @@
 import toast from "react-hot-toast";
 
-export async function fetchLogin(event) {
+export async function fetchRegister(event) {
   event.preventDefault();
 
   const form = event.target;
@@ -21,7 +21,7 @@ export async function fetchLogin(event) {
   }
 }
 
-export async function errorLogin(error) {
+export async function errorRegister(error) {
   await new Promise((resolve) => setTimeout(resolve, 2000));
 
   if (error.name === "Bad Request") {
