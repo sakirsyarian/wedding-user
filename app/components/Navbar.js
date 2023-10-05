@@ -47,9 +47,10 @@ export default function Navbar() {
               <Link href="/" className={cn(defaultFlex, "gap-2", "text-xl")}>
                 <Image
                   src="/img/logo/andaring.png"
-                  width={150}
-                  height={150}
+                  width={120}
+                  height={120}
                   alt="andaring"
+                  style={{ width: "auto", height: "auto" }}
                 />
               </Link>
             </div>

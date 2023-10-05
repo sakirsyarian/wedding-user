@@ -60,6 +60,7 @@ export default function Form() {
                 width={200}
                 height={200}
                 alt="andaring"
+                priority={true}
               />
             </Link>
             <div className={cn(defaultSpaceY, "space-y-1")}>

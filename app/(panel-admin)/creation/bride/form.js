@@ -73,7 +73,7 @@ export default function Form() {
       toast.success("Berhasil disimpan");
       await new Promise((resolve) => setTimeout(resolve, 3000));
 
-      // router.push("/creation/event");
+      router.push("/creation/event");
     } catch (error) {
       await errorBride(error);
       router.push("/login");
@@ -85,11 +85,7 @@ export default function Form() {
   return (
     <>
       <Toaster position="top-right" />
-      <form
-        onSubmit={handleSubmit}
-        className="space-y-10"
-        encType="multipart/form-data"
-      >
+      <form onSubmit={handleSubmit} className="space-y-10">
         <div className={cn(defaultGrid, "md:grid-cols-2")}>
           {/* male */}
           <div className={cn(defaultGrid)}>

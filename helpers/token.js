@@ -1,9 +1,13 @@
 import { cookies } from "next/headers";
 
+// Fungsi untuk mengambil token
+export const getToken = () => {
+  return cookies().get("act");
+};
+
 // Fungsi untuk mengambil token segar
 export const getRefreshToken = () => {
-  const cookieStore = cookies().get("rft");
-  return cookieStore?.value;
+  return cookies().get("rft");
 };
 
 export const deleteToken = (name) => {

@@ -103,9 +103,10 @@ export default function Footer() {
                 <Link href="/">
                   <Image
                     src="/img/logo/andaring.png"
-                    width={200}
-                    height={200}
+                    width={130}
+                    height={130}
                     alt="andaring"
+                    style={{ width: "auto", height: "auto" }}
                   />
                 </Link>
                 <p>

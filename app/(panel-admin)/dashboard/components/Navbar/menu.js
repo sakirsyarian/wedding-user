@@ -23,9 +23,10 @@ export default function MenuNavbar() {
         <Link href="/" className={cn(defaultColor, "text-xl")}>
           <Image
             src="/img/logo/andaring.png"
-            width={150}
-            height={150}
+            width={120}
+            height={120}
             alt="andaring"
+            style={{ width: "auto", height: "auto" }}
           />
         </Link>
       </div>
