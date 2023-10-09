@@ -18,7 +18,7 @@ export async function fetchBride(event) {
     throw { name: "Unauthorized", message: bride.message };
   }
 
-  localStorage.setItem("brideId", bride.data._id);
+  localStorage.setItem("brideId", bride.data?._id);
 }
 
 export async function errorBride(error) {

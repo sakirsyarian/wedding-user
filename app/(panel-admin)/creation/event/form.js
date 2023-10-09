@@ -137,14 +137,16 @@ export default function FormEvent() {
 
       router.push("/creation/theme");
     } catch (error) {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-
       // jika token habis akan redirect ke login
       if (error.name === "Unauthorized") {
-        toast.error(error.message);
+        toast.error(error.message, {
+          duration: 2000,
+        });
+        await new Promise((resolve) => setTimeout(resolve, 4000));
         return router.push("/login");
       }
 
+      await new Promise((resolve) => setTimeout(resolve, 2000));
       return toast.error(error.message);
     } finally {
       setLoading(false);
