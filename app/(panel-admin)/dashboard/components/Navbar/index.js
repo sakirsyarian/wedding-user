@@ -16,12 +16,20 @@ export default function Navbar() {
         <div className={cn(defaultPadding, "md:container")}>
           <div className={cn(defaultFlex, "text-slate-600")}>
             <MenuNavbar />
-            <BurgerMenuNavbar />
+            {/* <BurgerMenuNavbar /> */}
           </div>
         </div>
-        <Separator />
-        <div className={cn(defaultPadding, "py-2", "md:container")}>
-          <div className="">
+        <Separator className="hidden md:block" />
+        <div
+          className={cn(
+            defaultPadding,
+            "py-2",
+            "md:container",
+            "hidden",
+            "md:block"
+          )}
+        >
+          <div className="text-base">
             <SubMenuNavbar />
           </div>
         </div>

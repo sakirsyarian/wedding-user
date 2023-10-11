@@ -21,18 +21,19 @@ export default function Share() {
         <CardHeader>
           <CardTitle className="text-xl">Sebarkan Link</CardTitle>
 
-          <CardDescription>
+          <CardDescription className="text-base">
             Silakan bagikan link ini ke tamu undangan
           </CardDescription>
         </CardHeader>
 
         <CardContent>
-          <div className="flex gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <Input
+              className="text-base"
               value="https://andaring.com/sarian-astrid?guest=Vanessa"
               readOnly
             />
-            <div className="flex gap-5">
+            <div className="flex gap-5 text-base">
               <Button size="sm" variant="primary">
                 Copy
               </Button>

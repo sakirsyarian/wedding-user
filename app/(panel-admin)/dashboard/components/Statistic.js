@@ -27,7 +27,13 @@ const guests = [
 
 // css
 const defaultCard = ["text-slate-500", "shadow-md", "border-0"];
-const defaultGrid = ["grid", "grid-cols-3", "gap-5"];
+const defaultGrid = [
+  "grid",
+  "grid-cols-1",
+  "md:grid-cols-2",
+  "lg:grid-cols-3",
+  "gap-5",
+];
 const defaultFlex = ["flex", "items-center", "justify-between", "gap-5"];
 
 export default function Statistic() {
@@ -39,7 +45,7 @@ export default function Statistic() {
             <CardHeader
               className={cn(defaultFlex, "flex-row", "space-y-0", "pb-2")}
             >
-              <CardTitle className="text-sm font-medium">
+              <CardTitle className="text-base font-medium">
                 {guest.title}
               </CardTitle>
               {guest.icon}
@@ -47,7 +53,7 @@ export default function Statistic() {
 
             <CardContent>
               <div className="text-2xl font-semibold">{guest.count}</div>
-              <p className="text-xs text-muted-foreground">
+              <p className="text-sm text-muted-foreground">
                 {guest.description}
               </p>
             </CardContent>

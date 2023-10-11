@@ -12,7 +12,7 @@ export default function Dashboard() {
       <section id="dashboard">
         <div className="px-5 py-10 md:container">
           <div className={cn(defaultSpaceY)}>
-            <Upgrade />
+            {/* <Upgrade  /> */}
             <Statistic />
             <Share />
           </div>

@@ -15,7 +15,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 // data form
-import dataInputLogin from "./data";
+import dataInputRegister from "./data";
 
 // custom components
 import SubmitButton from "./button";
@@ -53,6 +53,12 @@ export default function FormLogin() {
 
   // zod schema
   const FormSchema = z.object({
+    username: z.string().min(2, {
+      message: "Username harus diisi",
+    }),
+    phoneNumber: z.string().min(2, {
+      message: "Nomor whatsapp harus diisi",
+    }),
     email: z
       .string()
       .min(2, {
@@ -68,6 +74,8 @@ export default function FormLogin() {
   const form = useForm({
     resolver: zodResolver(FormSchema),
     defaultValues: {
+      username: "",
+      phoneNumber: "",
       email: "",
       password: "",
     },
@@ -76,39 +84,29 @@ export default function FormLogin() {
   async function onSubmit(values) {
     try {
       setLoading(true);
-      const res = await fetch("/api/login", {
+      const res = await fetch("/api/register", {
         method: "POST",
         body: JSON.stringify(values),
       });
       const user = await res.json();
 
-      //  lempar ke catch jika salah email atau password
-      if (res.status === 401) {
-        throw { name: "Unauthorized", message: "Invalid email or password" };
+      //  lempar ke catch jika field tidak terisi
+      if (res.status === 400) {
+        throw { name: "Bad Request", message: user.message };
       }
 
-      //  lempar ke catch jika admin masuk
-      if (res.status === 403) {
-        throw { name: "Forbidden", message: "Admin dilarang masuk" };
-      }
-
-      toast.success("Login berhasil", {
+      toast.success("Registrasi berhasil", {
         duration: 1000,
       });
       await new Promise((resolve) => setTimeout(resolve, 2000));
 
-      router.push("/creation/bride");
+      router.push("/login");
     } catch (error) {
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
-      //  error jika salah email atau password
-      if (error.name === "Unauthorized") {
-        return toast.error(error.message);
-      }
-
-      //  error jika admin masuk
-      if (error.name === "Forbidden") {
-        return toast.error(error.message);
+      //  error jika field tidak terisi
+      if (error.name === "Bad Request") {
+        return error.message.map((message) => toast.error(message));
       }
 
       return toast.error("Internal server error");
@@ -138,10 +136,10 @@ export default function FormLogin() {
               </Link>
               <div className={cn(defaultSpaceY, "space-y-1")}>
                 <CardTitle className="text-xl text-tertiary">
-                  Ayo masuk sini 👋🏻
+                  Buat akun dulu 🚀
                 </CardTitle>
                 <CardDescription>
-                  Masuk akun Andaring dulu ya untuk buat undangan gratis
+                  Ayo buat akun Andaring supaya bisa bikin undangan gratis
                 </CardDescription>
               </div>
             </CardHeader>
@@ -169,7 +167,7 @@ export default function FormLogin() {
                 </div>
               </div>
 
-              {dataInputLogin.map((item, index) => (
+              {dataInputRegister.map((item, index) => (
                 <div key={index}>
                   <FormField
                     control={form.control}
@@ -194,9 +192,9 @@ export default function FormLogin() {
             <CardFooter className="flex flex-col gap-5">
               <SubmitButton loading={loading} />
               <div className="text-sm">
-                Belum punya akun?{" "}
-                <Link href="/register" className="text-secondary">
-                  Buat akun
+                Sudah memiliki akun?{" "}
+                <Link href="/login" className="text-secondary">
+                  Masuk sini
                 </Link>
               </div>
             </CardFooter>
