@@ -2,11 +2,11 @@ import axiosInstance from "@/lib/axios";
 
 export async function POST(request) {
   try {
-    const data = await request.json();
+    const dataBride = await request.json();
     const { data: bride } = await axiosInstance.post(
       "http://localhost:3002/v1/customer/brides",
       {
-        ...data,
+        ...dataBride,
       }
     );
 

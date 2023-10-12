@@ -67,8 +67,8 @@ export default function FormLogin() {
       .email({
         message: "Email tidak valid",
       }),
-    password: z.string().min(2, {
-      message: "Password harus diisi",
+    password: z.string().min(5, {
+      message: "Minimal password harus 5 karakter",
     }),
   });
   const form = useForm({

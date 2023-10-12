@@ -99,7 +99,7 @@ export default function FormBride() {
       <Toaster position="top-right" />
       <form onSubmit={handleSubmit} className="space-y-10">
         <div className={cn(defaultGrid, "md:grid-cols-2")}>
-          {/* male */}
+          {/* bride */}
           {brides.map((bride, indexBride) => (
             <div key={indexBride} className={cn(defaultGrid)}>
               <h2 className="font-semibold text-lg">{bride.heading}</h2>

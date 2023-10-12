@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Flower, Palette, AlertTriangle, CalendarDays } from "lucide-react";
+import { Flower, Palette, AlertCircle, CalendarDays } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
@@ -65,9 +65,9 @@ export default function LayoutCreation({ children }) {
                 ))}
               </ul>
 
-              <Alert className="space-y-2 text-amber-500 border-amber-500">
+              <Alert className="space-y-2 text-sky-500 border-sky-500">
                 <AlertTitle className="flex items-center gap-2">
-                  <AlertTriangle className="w-5 h-5" />
+                  <AlertCircle className="w-5 h-5" />
                   Info
                 </AlertTitle>
                 <AlertDescription>
