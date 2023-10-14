@@ -92,6 +92,7 @@ export default function FormBride() {
         throw { name: "Unauthorized", message: "Silakan login ulang" };
       }
 
+      // menyimpan id ke storage
       localStorage.setItem("brideId", bride.data?._id);
       toast.success("Berhasil disimpan", {
         duration: 1000,

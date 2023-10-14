@@ -1,28 +1,10 @@
-import Link from "next/link";
-import { Flower, Palette, AlertCircle, CalendarDays } from "lucide-react";
+import { AlertCircle } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import Navbar from "../dashboard/components/Navbar";
 
-// data
-const menus = [
-  {
-    title: "Mempelai",
-    link: "bride",
-    icon: <Flower className="w-5 h-5" />,
-  },
-  {
-    title: "Acara",
-    link: "event",
-    icon: <CalendarDays className="w-5 h-5" />,
-  },
-  {
-    title: "Tema",
-    link: "theme",
-    icon: <Palette className="w-5 h-5" />,
-  },
-];
+import Navbar from "./components/Navbar";
+import Step from "./components/Step";
 
 // css
 const defaultSpaceY = ["space-y-8"];
@@ -42,28 +24,7 @@ export default function LayoutCreation({ children }) {
               ></div>
 
               {/* step */}
-              <ul
-                className={cn(
-                  defaultFlex,
-                  "gap-7",
-                  "md:gap-14",
-                  "justify-center"
-                )}
-              >
-                {menus.map((menu, index) => (
-                  <li key={index} className="hover:text-tertiary">
-                    <Link
-                      href={`/creation/${menu.link}`}
-                      className={menu.title}
-                    >
-                      <div className={cn(defaultFlex, "gap-2")}>
-                        {menu.icon}
-                        <p>{menu.title}</p>
-                      </div>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+              <Step />
 
               <Alert className="space-y-2 text-sky-500 border-sky-500">
                 <AlertTitle className="flex items-center gap-2">

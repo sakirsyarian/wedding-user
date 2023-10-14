@@ -1,6 +1,15 @@
+// next
 import Link from "next/link";
 import Image from "next/image";
+import { cookies } from "next/headers";
 
+// icon
+import { User2, Wallet2, Settings } from "lucide-react";
+
+// custom components
+import Logout from "../Logout";
+
+// ui components
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -16,6 +25,9 @@ import {
 const defaultColor = ["text-amber-500"];
 
 export default function MenuNavbar() {
+  const cookieStore = cookies();
+  const username = cookieStore.get("username");
+
   return (
     <>
       {/* brand */}
@@ -32,25 +44,42 @@ export default function MenuNavbar() {
       </div>
 
       {/* account */}
-      <div className="">
-        <DropdownMenu>
-          <DropdownMenuTrigger>
-            <Avatar>
-              <AvatarImage src="https://github.com/shadcn.png" />
-              <AvatarFallback>S</AvatarFallback>
-            </Avatar>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className="mr-5 md:mr-0 p-3 w-52 space-y-2">
-            <DropdownMenuLabel>Ahmad Sarian</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>Profile</DropdownMenuItem>
-            <DropdownMenuItem>Billing</DropdownMenuItem>
-            <DropdownMenuItem>Settings</DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>Logout</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      </div>
+      <DropdownMenu>
+        <DropdownMenuTrigger className="outline-none">
+          <Avatar>
+            <AvatarImage src="https://github.com/shadcn.png" />
+            <AvatarFallback>S</AvatarFallback>
+          </Avatar>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="mr-5 md:mr-0 p-3 w-52 space-y-2 text-slate-500">
+          <DropdownMenuLabel>
+            <p className="text-base text-slate-600">{username.value}</p>
+          </DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem>
+            <Link className="flex" href="/dashboard">
+              <User2 className="mr-2 w-[18px] h-[18px]" />
+              Profil
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <Link className="flex" href="/dashboard">
+              <Wallet2 className="mr-2 w-[18px] h-[18px]" />
+              Pembelian
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <Link className="flex" href="/dashboard">
+              <Settings className="mr-2 w-[18px] h-[18px]" />
+              Pengaturan
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem>
+            <Logout />
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
     </>
   );
 }

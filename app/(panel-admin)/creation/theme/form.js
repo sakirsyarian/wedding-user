@@ -1,14 +1,22 @@
 "use client";
 
-import * as z from "zod";
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+// react and next
+import { useState } from "react";
 import Image from "next/image";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import toast, { Toaster } from "react-hot-toast";
-import { Loader2 } from "lucide-react";
+import { useRouter } from "next/navigation";
 
+// third party
+import toast, { Toaster } from "react-hot-toast";
+
+// forms
+import * as z from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+// custom components
+import SubmitButton from "./button";
+
+// ui components
 import { cn } from "@/lib/utils";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -20,71 +28,21 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import SubmitButton from "./button";
 
 // css
 const defaultGrid = ["w-full", "grid", "items-center", "gap-10"];
 const defaultCardImage = ["text-slate-500", "shadow-none"];
 
-export default function FormTheme() {
+export default function FormTheme(props) {
   const router = useRouter();
-
-  const [theme, setTheme] = useState([]);
-  const [validationOption, setValidationOption] = useState([]);
-  const [loadingTheme, setLoadingTheme] = useState(false);
-
   const [loading, setLoading] = useState(false);
 
-  // fetching theme setelah component di-mount
-  useEffect(() => {
-    async function fetchTheme() {
-      try {
-        setLoadingTheme(true);
-        const res = await fetch("/api/weddings/theme");
-        const themes = await res.json();
-
-        // handle error
-        if (res.status === 401) {
-          throw { name: "Unauthorized", message: themes.message };
-        }
-        if (themes.name === "Error") {
-          throw { message: themes.message };
-        }
-
-        // digunakan untuk opsi validasi zod enum
-        const noDuplicate = [];
-        themes.data.map((item) => {
-          noDuplicate.push(item._id);
-
-          setValidationOption(noDuplicate);
-        });
-
-        setTheme(themes.data);
-      } catch (error) {
-        // jika token habis akan redirect ke login
-        if (error.name === "Unauthorized") {
-          return router.push("/login");
-        }
-
-        console.log(error, "<<< error form");
-        return router.push("/login");
-      } finally {
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-        setLoadingTheme(false);
-      }
-    }
-
-    fetchTheme();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  // validasi pilihan yang sesuai
+  // zod schema
   const formSchema = z.object({
-    theme: z.enum(validationOption, {
+    theme: z.enum(props.zodEnum, {
       required_error: "Tema harus dipilih",
     }),
   });
-
   const form = useForm({
     resolver: zodResolver(formSchema),
   });
@@ -95,7 +53,13 @@ export default function FormTheme() {
 
       // local storage
       const bride = localStorage.getItem("brideId");
+      if (!bride) {
+        throw { name: "BadRequest", message: "Silakan mengisi form mempelai" };
+      }
       const event = localStorage.getItem("eventId");
+      if (!bride) {
+        throw { name: "BadRequest", message: "Silakan mengisi form acara" };
+      }
 
       const weddingData = {
         theme: values.theme,
@@ -107,36 +71,42 @@ export default function FormTheme() {
         method: "POST",
         body: JSON.stringify(weddingData),
       });
-
-      // handle error
       const wedding = await res.json();
+
+      // lempar ke catch jika token habis
       if (res.status === 401) {
-        throw { name: "Unauthorized", message: wedding.message };
-      }
-      if (wedding.name === "Error") {
-        throw { message: wedding.message };
+        throw { name: "Unauthorized", message: "Silakan login ulang" };
       }
 
-      // menghapus storage
+      // menghapus local storage
       localStorage.clear();
 
-      toast.success("Berhasil disimpan");
-      await new Promise((resolve) => setTimeout(resolve, 3000));
-      console.log(wedding, "<<< wedding");
+      toast.success("Berhasil disimpan", {
+        duration: 1000,
+      });
+      await new Promise((resolve) => setTimeout(resolve, 2000));
 
       router.push("/dashboard");
     } catch (error) {
-      // jika token habis akan redirect ke login
+      console.log(error, "<<< error");
+
+      // error jika token habis
       if (error.name === "Unauthorized") {
         toast.error(error.message, {
           duration: 2000,
         });
-        await new Promise((resolve) => setTimeout(resolve, 4000));
+        await new Promise((resolve) => setTimeout(resolve, 3000));
         return router.push("/login");
       }
 
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      return toast.error(error.message);
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
+      // error jika form tidak lengkap
+      if (error.name === "BadRequest") {
+        return toast.error(error.message);
+      }
+
+      return toast.error("Internal server error");
     } finally {
       setLoading(false);
     }
@@ -161,46 +131,38 @@ export default function FormTheme() {
                         <RadioGroup
                           onValueChange={field.onChange}
                           defaultValue={field.value}
-                          className="flex items-center space-x-2"
+                          className="grid grid-cols-1 md:grid-cols-3 items-center gap-5"
                         >
-                          {loadingTheme && (
-                            <div className="w-full flex gap-2 justify-center">
-                              <Loader2 className="animate-spin" />
-                              <span>Loading...</span>
-                            </div>
-                          )}
-
-                          {!loadingTheme &&
-                            theme.map((item, index) => (
-                              <FormItem
-                                key={index}
-                                className="flex items-center space-x-3 space-y-0"
-                              >
-                                <FormControl>
-                                  <RadioGroupItem
-                                    className="radio-input"
-                                    value={item._id}
-                                  />
-                                </FormControl>
-                                <FormLabel className="font-normal radio-image">
-                                  <Card className={cn(defaultCardImage)}>
-                                    <CardHeader>
-                                      <Image
-                                        src={`/img/template/${item.cover}`}
-                                        width={500}
-                                        height={500}
-                                        alt={item.name}
-                                      />
-                                    </CardHeader>
-                                    <CardContent>
-                                      <p className="font-semibold text-lg">
-                                        {item.name}
-                                      </p>
-                                    </CardContent>
-                                  </Card>
-                                </FormLabel>
-                              </FormItem>
-                            ))}
+                          {props.themes.map((item, index) => (
+                            <FormItem
+                              key={index}
+                              className="flex items-center space-x-3 space-y-0"
+                            >
+                              <FormControl>
+                                <RadioGroupItem
+                                  className="radio-input"
+                                  value={item._id}
+                                />
+                              </FormControl>
+                              <FormLabel className="font-normal radio-image">
+                                <Card className={cn(defaultCardImage)}>
+                                  <CardHeader>
+                                    <Image
+                                      src={`/img/template/${item.cover}`}
+                                      width={500}
+                                      height={500}
+                                      alt={item.name}
+                                    />
+                                  </CardHeader>
+                                  <CardContent>
+                                    <p className="font-semibold text-lg">
+                                      {item.name}
+                                    </p>
+                                  </CardContent>
+                                </Card>
+                              </FormLabel>
+                            </FormItem>
+                          ))}
                         </RadioGroup>
                       </FormControl>
                       <FormMessage />

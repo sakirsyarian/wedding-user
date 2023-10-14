@@ -92,12 +92,22 @@ export default function FormLogin() {
         throw { name: "Forbidden", message: "Admin dilarang masuk" };
       }
 
+      // mencari wedding
+      const resWedding = await fetch(`/api/weddings/${user.id}`);
+      const wedding = await resWedding.json();
+
       toast.success("Login berhasil", {
         duration: 1000,
       });
       await new Promise((resolve) => setTimeout(resolve, 2000));
 
-      router.push("/creation/bride");
+      // jika wedding tidak ditemukan maka alihkan ke creation
+      if (wedding.name === "NotFound") {
+        return router.push("/creation/bride");
+      }
+
+      // jika wedding ditemukan maka alihkan ke dashboard
+      router.push("/dashboard");
     } catch (error) {
       await new Promise((resolve) => setTimeout(resolve, 1000));
 

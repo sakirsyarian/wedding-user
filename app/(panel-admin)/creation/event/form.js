@@ -1,16 +1,29 @@
 "use client";
 
-import * as z from "zod";
-import { useForm } from "react-hook-form";
+// react and next
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { format } from "date-fns";
-import { Calendar as CalendarIcon } from "lucide-react";
-import toast, { Toaster } from "react-hot-toast";
 
-import SubmitButton from "./button";
-import { cn } from "@/lib/utils";
+// third party
+import toast, { Toaster } from "react-hot-toast";
+import { format } from "date-fns";
+
+// icon
+import { Calendar as CalendarIcon } from "lucide-react";
+
+// forms
+import * as z from "zod";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+
+// data form
+import events from "./data";
+
+// custom components
+import SubmitButton from "./button";
+
+// ui components
+import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -38,54 +51,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
-// regex untuk validasi waktu
-const regexPattern = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
-const formSchema = z.object({
-  mainHeading: z.string().min(1, {
-    message: "Judul harus diisi",
-  }),
-  mainDate: z.date({
-    required_error: "Tanggal acara harus diisi",
-  }),
-  mainTimeZone: z.string({
-    required_error: "Zona waktu harus diisi",
-  }),
-  mainTimeStart: z.string().regex(/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/, {
-    message: "Format waktu tidak valid",
-  }),
-  mainTimeFinish: z
-    .string()
-    .nullable()
-    .refine((value) => value === "" || regexPattern.test(value), {
-      message: "Format waktu tidak valid",
-    }),
-  mainUntilDone: z.boolean().default(false),
-  mainLocation: z.string().min(1, {
-    message: "Lokasi harus diisi",
-  }),
-  mainAddress: z.string().min(1, {
-    message: "Alamat harus diisi",
-  }),
-  optionalHeading: z.string(),
-  optionalDate: z.date().optional(),
-  optionalTimeZone: z.string().optional(),
-  optionalTimeStart: z
-    .string()
-    .nullable()
-    .refine((value) => value === "" || regexPattern.test(value), {
-      message: "Format waktu tidak valid",
-    }),
-  optionalTimeFinish: z
-    .string()
-    .nullable()
-    .refine((value) => value === "" || regexPattern.test(value), {
-      message: "Format waktu tidak valid",
-    }),
-  optionalUntilDone: z.boolean().default(false),
-  optionalLocation: z.string(),
-  optionalAddress: z.string(),
-});
-
 // css
 const defaultGrid = ["w-full", "grid", "items-center", "gap-10"];
 
@@ -93,6 +58,55 @@ export default function FormEvent() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
+  // regex untuk validasi waktu
+  const regexPattern = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
+
+  // zod schema
+  const formSchema = z.object({
+    mainHeading: z.string().min(1, {
+      message: "Judul harus diisi",
+    }),
+    mainDate: z.date({
+      required_error: "Tanggal acara harus diisi",
+    }),
+    mainTimeZone: z.string({
+      required_error: "Zona waktu harus diisi",
+    }),
+    mainTimeStart: z.string().regex(/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/, {
+      message: "Format waktu tidak valid",
+    }),
+    mainTimeFinish: z
+      .string()
+      .nullable()
+      .refine((value) => value === "" || regexPattern.test(value), {
+        message: "Format waktu tidak valid",
+      }),
+    mainUntilDone: z.boolean().default(false),
+    mainLocation: z.string().min(1, {
+      message: "Lokasi harus diisi",
+    }),
+    mainAddress: z.string().min(1, {
+      message: "Alamat harus diisi",
+    }),
+    optionalHeading: z.string(),
+    optionalDate: z.date().optional(),
+    optionalTimeZone: z.string().optional(),
+    optionalTimeStart: z
+      .string()
+      .nullable()
+      .refine((value) => value === "" || regexPattern.test(value), {
+        message: "Format waktu tidak valid",
+      }),
+    optionalTimeFinish: z
+      .string()
+      .nullable()
+      .refine((value) => value === "" || regexPattern.test(value), {
+        message: "Format waktu tidak valid",
+      }),
+    optionalUntilDone: z.boolean().default(false),
+    optionalLocation: z.string(),
+    optionalAddress: z.string(),
+  });
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -114,76 +128,42 @@ export default function FormEvent() {
   async function onSubmit(values) {
     try {
       setLoading(true);
-
       const res = await fetch("/api/weddings/event", {
         method: "POST",
         body: JSON.stringify(values),
       });
-
-      // handle error
       const event = await res.json();
+
+      //  lempar ke catch jika token habis
       if (res.status === 401) {
-        throw { name: "Unauthorized", message: event.message };
-      }
-      if (event.name === "Error") {
-        throw { message: event.message };
+        throw { name: "Unauthorized", message: "Silakan login ulang" };
       }
 
       // menyimpan id ke storage
       localStorage.setItem("eventId", event.data?._id);
 
-      toast.success("Berhasil disimpan");
-      await new Promise((resolve) => setTimeout(resolve, 3000));
+      toast.success("Berhasil disimpan", {
+        duration: 1000,
+      });
+      await new Promise((resolve) => setTimeout(resolve, 2000));
 
       router.push("/creation/theme");
     } catch (error) {
-      // jika token habis akan redirect ke login
+      // error jika token habis
       if (error.name === "Unauthorized") {
         toast.error(error.message, {
           duration: 2000,
         });
-        await new Promise((resolve) => setTimeout(resolve, 4000));
+        await new Promise((resolve) => setTimeout(resolve, 3000));
         return router.push("/login");
       }
 
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      return toast.error(error.message);
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      return toast.error("Internal server error");
     } finally {
       setLoading(false);
     }
   }
-
-  // data
-  const events = [
-    {
-      title: "Acara",
-      important: true,
-      heading: "mainHeading",
-      date: "mainDate",
-      timeZone: "mainTimeZone",
-      start: "mainTimeStart",
-      finish: {
-        name: "mainTimeFinish",
-        disable: "mainUntilDone",
-      },
-      location: "mainLocation",
-      address: "mainAddress",
-    },
-    {
-      title: "Acara Optional",
-      important: false,
-      heading: "optionalHeading",
-      date: "optionalDate",
-      timeZone: "optionalTimeZone",
-      start: "optionalTimeStart",
-      finish: {
-        name: "optionalTimeFinish",
-        disable: "optionalUntilDone",
-      },
-      location: "optionalLocation",
-      address: "optionalAddress",
-    },
-  ];
 
   return (
     <>

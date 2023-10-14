@@ -6,7 +6,6 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -21,7 +20,7 @@ export default function Share() {
         <CardHeader>
           <CardTitle className="text-xl">Sebarkan Link</CardTitle>
 
-          <CardDescription className="text-base">
+          <CardDescription>
             Silakan bagikan link ini ke tamu undangan
           </CardDescription>
         </CardHeader>
@@ -29,17 +28,12 @@ export default function Share() {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <Input
-              className="text-base"
               value="https://andaring.com/sarian-astrid?guest=Vanessa"
               readOnly
             />
             <div className="flex gap-5 text-base">
-              <Button size="sm" variant="primary">
-                Copy
-              </Button>
-              <Button size="sm" variant="primary">
-                Open
-              </Button>
+              <Button variant="primary">Copy</Button>
+              <Button variant="primary">Edit</Button>
             </div>
           </div>
         </CardContent>

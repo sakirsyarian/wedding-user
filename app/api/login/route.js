@@ -19,6 +19,7 @@ export async function POST(request) {
       throw { name: "Forbidden", message: user.message };
     }
 
+    cookies().set("username", user.data.username);
     cookies().set({
       name: "rft",
       value: user.refresh_token,
@@ -34,7 +35,7 @@ export async function POST(request) {
 
     return new Response(
       JSON.stringify({
-        accessToken: user.access_token,
+        id: user.data.id,
         message: "Login berhasil",
       }),
       {
