@@ -1,94 +1,130 @@
 "use client";
 
-import * as z from "zod";
+// react and next
 import { useState } from "react";
-import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
+
+// third party
 import toast, { Toaster } from "react-hot-toast";
+
+// forms
+import * as z from "zod";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
+// custom components
+import brides from "./data";
+import SubmitButton from "./button";
+
+// ui components
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 
-import brides from "./data";
-import SubmitButton from "./button";
-// import { fetchBride, errorBride } from "./action";
-
-// const formSchema = z.object({
-//   mainHeading: z.string().min(1, {
-//     message: "Judul harus diisi",
-//   }),
-//   mainDate: z.date({
-//     required_error: "Tanggal acara harus diisi",
-//   }),
-//   mainTimeZone: z.string({
-//     required_error: "Zona waktu harus diisi",
-//   }),
-//   mainTimeStart: z.string().regex(/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/, {
-//     message: "Format waktu tidak valid",
-//   }),
-//   mainTimeFinish: z
-//     .string()
-//     .nullable()
-//     .refine((value) => value === "" || regexPattern.test(value), {
-//       message: "Format waktu tidak valid",
-//     }),
-//   mainUntilDone: z.boolean().default(false),
-//   mainLocation: z.string().min(1, {
-//     message: "Lokasi harus diisi",
-//   }),
-//   mainAddress: z.string().min(1, {
-//     message: "Alamat harus diisi",
-//   }),
-//   optionalHeading: z.string(),
-//   optionalDate: z.date().optional(),
-//   optionalTimeZone: z.string().optional(),
-//   optionalTimeStart: z
-//     .string()
-//     .nullable()
-//     .refine((value) => value === "" || regexPattern.test(value), {
-//       message: "Format waktu tidak valid",
-//     }),
-//   optionalTimeFinish: z
-//     .string()
-//     .nullable()
-//     .refine((value) => value === "" || regexPattern.test(value), {
-//       message: "Format waktu tidak valid",
-//     }),
-//   optionalUntilDone: z.boolean().default(false),
-//   optionalLocation: z.string(),
-//   optionalAddress: z.string(),
-// });
-
 // css
 const defaultGrid = ["w-full", "grid", "items-center", "gap-10"];
 
-export default function FormBride() {
+export default function FormBride(props) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
-  async function handleSubmit(event) {
+  // zod schema
+  const FormSchema = z.object({
+    maleFullName: z.string().min(2, {
+      message: "Nama lengkap harus diisi",
+    }),
+    maleNickName: z.string().min(2, {
+      message: "Nama panggilan harus diisi",
+    }),
+    maleFatherName: z.string().min(2, {
+      message: "Nama ayah harus diisi",
+    }),
+    maleMotherName: z.string().min(2, {
+      message: "Nama ibu harus diisi",
+    }),
+    maleInstagram: z.string().nullable(),
+    maleFacebook: z.string().nullable(),
+    maleThreads: z.string().nullable(),
+    femaleFullName: z.string().min(2, {
+      message: "Nama lengkap harus diisi",
+    }),
+    femaleNickName: z.string().min(2, {
+      message: "Nama panggilan harus diisi",
+    }),
+    femaleFatherName: z.string().min(2, {
+      message: "Nama ayah harus diisi",
+    }),
+    femaleMotherName: z.string().min(2, {
+      message: "Nama ibu harus diisi",
+    }),
+    femaleInstagram: z.string().nullable(),
+    femaleFacebook: z.string().nullable(),
+    femaleThreads: z.string().nullable(),
+  });
+  const form = useForm({
+    resolver: zodResolver(FormSchema),
+    defaultValues: {
+      maleFullName: props.bride.male.maleFullName || "",
+      maleNickName: props.bride.male.maleNickName || "",
+      maleFatherName: props.bride.male.maleFatherName || "",
+      maleMotherName: props.bride.male.maleMotherName || "",
+      maleInstagram: props.bride.male.maleSocialMedia.maleInstagram || "",
+      maleFacebook: props.bride.male.maleSocialMedia.maleFacebook || "",
+      maleThreads: props.bride.male.maleSocialMedia.maleThreads || "",
+      femaleFullName: props.bride.female.femaleFullName || "",
+      femaleNickName: props.bride.female.femaleNickName || "",
+      femaleFatherName: props.bride.female.femaleFatherName || "",
+      femaleMotherName: props.bride.female.femaleMotherName || "",
+      femaleInstagram:
+        props.bride.female.femaleSocialMedia.femaleInstagram || "",
+      femaleFacebook: props.bride.female.femaleSocialMedia.femaleFacebook || "",
+      femaleThreads: props.bride.female.femaleSocialMedia.femaleThreads || "",
+    },
+  });
+
+  async function onSubmit(values) {
     try {
       setLoading(true);
-      // await fetchBride(event);
+      const res = await fetch("/api/weddings/bride", {
+        method: "PUT",
+        body: JSON.stringify(values),
+      });
+      const bride = await res.json();
 
-      toast.success("Berhasil disimpan");
-      await new Promise((resolve) => setTimeout(resolve, 3000));
+      // lempar ke catch jika token habis
+      if (res.status === 401) {
+        throw {
+          status: 401,
+          name: "Unauthorized",
+          message: "Silakan login ulang",
+        };
+      }
 
-      router.push("/creation/event");
+      toast.success("Berhasil diupdate", {
+        duration: 1000,
+      });
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+
+      router.push("/dashboard");
     } catch (error) {
-      // await errorBride(error);
-      router.push("/login");
+      // error jika token habis
+      if (error.status === 401) {
+        toast.error(error.message, {
+          duration: 2000,
+        });
+        await new Promise((resolve) => setTimeout(resolve, 3000));
+        return router.push("/login");
+      }
+
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      return toast.error("Internal server error");
     } finally {
       setLoading(false);
     }
@@ -97,40 +133,54 @@ export default function FormBride() {
   return (
     <>
       <Toaster position="top-right" />
-      <form onSubmit={handleSubmit} className="space-y-10">
-        <div className={cn(defaultGrid, "md:grid-cols-2")}>
-          {/* bride */}
-          {brides.map((bride, indexBride) => (
-            <div key={indexBride} className={cn(defaultGrid)}>
-              <h2 className="font-semibold text-lg">{bride.heading}</h2>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-10">
+          <div className={cn(defaultGrid, "md:grid-cols-2")}>
+            {/* bride */}
+            {brides.map((bride, indexBride) => (
+              <div key={indexBride} className={cn(defaultGrid)}>
+                <h2 className="font-semibold text-lg">{bride.heading}</h2>
 
-              <div className="space-y-5">
-                {bride.forms.map((item, index) => (
-                  <div key={index} className={cn(defaultGrid, "gap-3")}>
-                    <Label htmlFor={item.name}>
-                      {item.title}
-                      {item.important && (
-                        <span className="ml-1 text-xs text-red-500">*</span>
-                      )}
-                    </Label>
-                    <Input
-                      type={item.type}
-                      id={item.name}
-                      name={item.name}
-                      placeholder={item.placeholder}
-                    />
-                  </div>
-                ))}
+                <div className="space-y-5">
+                  {bride.forms.map((item, index) => (
+                    <div key={index}>
+                      <FormField
+                        control={form.control}
+                        name={item.name}
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>
+                              {item.title}
+                              {item.important && (
+                                <span className="ml-1 text-xs text-red-500">
+                                  *
+                                </span>
+                              )}
+                            </FormLabel>
+                            <FormControl>
+                              <Input
+                                type={item.type}
+                                placeholder={item.placeholder}
+                                {...field}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
 
-        {/* action */}
-        <div>
-          <SubmitButton loading={loading} />
-        </div>
-      </form>
+          {/* action */}
+          <div>
+            <SubmitButton loading={loading} />
+          </div>
+        </form>
+      </Form>
     </>
   );
 }

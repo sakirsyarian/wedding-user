@@ -92,7 +92,7 @@ export default function FormLogin() {
         throw { name: "Forbidden", message: "Admin dilarang masuk" };
       }
 
-      // mencari wedding
+      // mencari wedding (mungkin bisa menggunakan req.user di server tidak perlu menggunakan param user.id)
       const resWedding = await fetch(`/api/weddings/${user.id}`);
       const wedding = await resWedding.json();
 

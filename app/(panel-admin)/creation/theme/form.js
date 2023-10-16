@@ -88,8 +88,6 @@ export default function FormTheme(props) {
 
       router.push("/dashboard");
     } catch (error) {
-      console.log(error, "<<< error");
-
       // error jika token habis
       if (error.name === "Unauthorized") {
         toast.error(error.message, {

@@ -2,20 +2,20 @@ import { cookies } from "next/headers";
 
 export async function POST(request) {
   try {
-    const res = await request.json();
-    const data = await fetch("http://localhost:3002/v1/customer/login", {
+    const data = await request.json();
+    const res = await fetch("http://localhost:3002/v1/customer/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(res),
+      body: JSON.stringify(data),
     });
 
-    const user = await data.json();
-    if (data.status === 401) {
+    const user = await res.json();
+    if (res.status === 401) {
       throw { name: "Unauthorized", message: user.message };
     }
-    if (data.status === 403) {
+    if (res.status === 403) {
       throw { name: "Forbidden", message: user.message };
     }
 
