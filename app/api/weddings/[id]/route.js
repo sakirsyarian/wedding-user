@@ -5,10 +5,6 @@ export async function GET(request, { params }) {
     const cookieStore = cookies();
     const token = cookieStore.get("act");
 
-    if (!token) {
-      return Response.redirect("/login");
-    }
-
     const id = params.id;
     const res = await fetch(
       `http://localhost:3002/v1/customer/weddings/${id}`,

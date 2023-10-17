@@ -6,7 +6,7 @@ import FormBride from "./form";
 // css
 const defaultCard = ["p-10", "rounded-lg", "shadow-md", "bg-white"];
 
-// validasi ulang setiap jam
+// validasi ulang
 export const revalidate = 0;
 
 async function getData() {

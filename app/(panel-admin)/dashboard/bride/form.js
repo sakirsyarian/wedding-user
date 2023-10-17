@@ -32,6 +32,9 @@ import {
 const defaultGrid = ["w-full", "grid", "items-center", "gap-10"];
 
 export default function FormBride(props) {
+  const brideMale = props.bride.male;
+  const brideFemale = props.bride.female;
+
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
@@ -71,21 +74,20 @@ export default function FormBride(props) {
   const form = useForm({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      maleFullName: props.bride.male.maleFullName || "",
-      maleNickName: props.bride.male.maleNickName || "",
-      maleFatherName: props.bride.male.maleFatherName || "",
-      maleMotherName: props.bride.male.maleMotherName || "",
-      maleInstagram: props.bride.male.maleSocialMedia.maleInstagram || "",
-      maleFacebook: props.bride.male.maleSocialMedia.maleFacebook || "",
-      maleThreads: props.bride.male.maleSocialMedia.maleThreads || "",
-      femaleFullName: props.bride.female.femaleFullName || "",
-      femaleNickName: props.bride.female.femaleNickName || "",
-      femaleFatherName: props.bride.female.femaleFatherName || "",
-      femaleMotherName: props.bride.female.femaleMotherName || "",
-      femaleInstagram:
-        props.bride.female.femaleSocialMedia.femaleInstagram || "",
-      femaleFacebook: props.bride.female.femaleSocialMedia.femaleFacebook || "",
-      femaleThreads: props.bride.female.femaleSocialMedia.femaleThreads || "",
+      maleFullName: brideMale.maleFullName || "",
+      maleNickName: brideMale.maleNickName || "",
+      maleFatherName: brideMale.maleFatherName || "",
+      maleMotherName: brideMale.maleMotherName || "",
+      maleInstagram: brideMale.maleSocialMedia.maleInstagram || "",
+      maleFacebook: brideMale.maleSocialMedia.maleFacebook || "",
+      maleThreads: brideMale.maleSocialMedia.maleThreads || "",
+      femaleFullName: brideFemale.femaleFullName || "",
+      femaleNickName: brideFemale.femaleNickName || "",
+      femaleFatherName: brideFemale.femaleFatherName || "",
+      femaleMotherName: brideFemale.femaleMotherName || "",
+      femaleInstagram: brideFemale.femaleSocialMedia.femaleInstagram || "",
+      femaleFacebook: brideFemale.femaleSocialMedia.femaleFacebook || "",
+      femaleThreads: brideFemale.femaleSocialMedia.femaleThreads || "",
     },
   });
 
@@ -113,6 +115,7 @@ export default function FormBride(props) {
       await new Promise((resolve) => setTimeout(resolve, 2000));
 
       router.push("/dashboard");
+      router.refresh();
     } catch (error) {
       // error jika token habis
       if (error.status === 401) {
@@ -120,7 +123,8 @@ export default function FormBride(props) {
           duration: 2000,
         });
         await new Promise((resolve) => setTimeout(resolve, 3000));
-        return router.push("/login");
+        router.push("/login");
+        return router.refresh();
       }
 
       await new Promise((resolve) => setTimeout(resolve, 1000));
