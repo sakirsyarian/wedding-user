@@ -6,8 +6,8 @@ import FormTheme from "./form";
 // css
 const defaultCard = ["p-10", "rounded-lg", "shadow-md", "bg-white"];
 
-// validasi ulang setiap jam
-export const revalidate = 3600;
+// validasi ulang
+export const revalidate = 0;
 
 async function getData() {
   const token = getToken();
@@ -18,7 +18,17 @@ async function getData() {
     },
   });
 
-  if (!res.ok) redirect("/login");
+  // jika token habis atau unauthorized
+  if (res.status === 401) {
+    redirect("/login");
+  }
+
+  // jika error tampilkan pesan
+  if (!res.ok) {
+    console.log(res.status, "<<< status");
+    console.log(res.statusText, "<<< statusText");
+  }
+
   return res.json();
 }
 
