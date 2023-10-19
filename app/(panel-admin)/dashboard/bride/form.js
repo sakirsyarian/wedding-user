@@ -123,8 +123,7 @@ export default function FormBride(props) {
           duration: 2000,
         });
         await new Promise((resolve) => setTimeout(resolve, 3000));
-        router.push("/login");
-        return router.refresh();
+        return router.push("/login");
       }
 
       await new Promise((resolve) => setTimeout(resolve, 1000));

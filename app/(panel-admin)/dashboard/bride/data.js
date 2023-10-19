@@ -4,7 +4,7 @@ const brides = [
     forms: [
       {
         important: true,
-        title: "Foto Pria",
+        title: "Foto",
         name: "malePicture",
         type: "file",
         placeholder: "Contoh : Foto Pria",
@@ -62,7 +62,7 @@ const brides = [
     forms: [
       {
         important: true,
-        title: "Foto Wanita",
+        title: "Foto",
         name: "femalePicture",
         type: "file",
         placeholder: "Contoh : Foto Wanita",

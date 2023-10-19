@@ -20,7 +20,7 @@ async function getData() {
 
   // jika token habis atau unauthorized
   if (res.status === 401) {
-    return redirect("/login");
+    redirect("/login");
   }
 
   // jika error tampilkan pesan

@@ -84,7 +84,7 @@ export default function FormLogin() {
 
       //  lempar ke catch jika salah email atau password
       if (res.status === 401) {
-        throw { name: "Unauthorized", message: "Invalid email or password" };
+        throw { name: "Unauthorized", message: "Salah email atau password" };
       }
 
       //  lempar ke catch jika admin masuk
@@ -108,6 +108,7 @@ export default function FormLogin() {
 
       // jika wedding ditemukan maka alihkan ke dashboard
       router.push("/dashboard");
+      router.refresh();
     } catch (error) {
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
