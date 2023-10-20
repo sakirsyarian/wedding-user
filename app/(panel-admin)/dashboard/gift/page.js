@@ -1,68 +1,51 @@
+import { redirect } from "next/navigation";
+import { getToken } from "@/helpers/token";
+import Form from "./form";
 import { cn } from "@/lib/utils";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-
-// data
-const gifts = [
-  {
-    forms: [
-      { title: "Platform", name: "platform", placeholder: "Contoh : BANK BCA" },
-      {
-        title: "No Rekening",
-        name: "accountNumber",
-        placeholder: "Contoh : 123456789",
-      },
-    ],
-  },
-];
 
 // css
-const defaultSpaceY = ["space-y-10"];
-const defaultCard = ["text-slate-500", "shadow-md", "border-0"];
-const defaultCardImage = ["text-slate-500", "shadow-none", "border-0"];
-const defaultGrid = ["grid", "items-center", "gap-10"];
+const defaultCard = ["p-10", "rounded-lg", "shadow-md", "bg-white"];
 
-export default function Gift() {
+// validasi ulang
+export const revalidate = 0;
+
+async function getData() {
+  const token = getToken();
+  const res = await fetch("http://localhost:3002/v1/customer/gift", {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token.value}`,
+    },
+  });
+
+  // jika token habis atau unauthorized
+  if (res.status === 401) {
+    redirect("/login");
+  }
+
+  // jika data tidak ditemukan
+  if (res.status === 404) {
+    return null;
+  }
+
+  // jika error tampilkan pesan
+  if (!res.ok) {
+    console.log(res.status, "<<< status");
+    console.log(res.statusText, "<<< statusText");
+  }
+
+  return res.json();
+}
+
+export default async function Gift() {
+  const gift = await getData();
+
   return (
     <>
       <section id="gift">
         <div className="px-5 py-10 md:container">
-          <div className={cn(defaultSpaceY)}>
-            <Card className={cn(defaultCard)}>
-              <CardHeader>
-                <CardTitle>Gift</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-5">
-                {gifts.map((gift, indexGift) => (
-                  <div key={indexGift} className="space-y-5">
-                    {gift.forms.map((form, index) => (
-                      <div key={index} className={cn(defaultGrid, "gap-3")}>
-                        <Label htmlFor={form.name}>{form.title}</Label>
-                        <Input
-                          type="text"
-                          id={form.name}
-                          name={form.name}
-                          placeholder={form.placeholder}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                ))}
-              </CardContent>
-              <CardFooter></CardFooter>
-            </Card>
-
-            <Button variant="primary" className="w-full">
-              Simpan
-            </Button>
+          <div className={cn(defaultCard)}>
+            <Form gift={gift?.data} />
           </div>
         </div>
       </section>
