@@ -7,28 +7,33 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 const testimonials = [
   {
     photo: "lilis.jpg",
-    name: "Kim Nadthilya",
+    name: "Rifa Nadthilya",
     testimoni:
-      "Terima kasih Seremoni udah bantu buatin undangan pernikahan digital kita. Prosesnya cepet banget, hasilnya juga bagus. Recommended!",
+      "Terima kasih Andaring udah bantu buatin undangan pernikahan digital kita. Prosesnya cepet banget, hasilnya juga bagus. Recommended!",
   },
   {
-    photo: "lilis.jpg",
+    photo: "reza.jpg",
     name: "Fajar Cakrawinata",
     testimoni:
-      "Seremoni mantap. Harga ekonomis tapi fitur dan undangannya sangat mewah dan ekslusif. Makasih juga buat adminnya yang sangat ramah",
+      "Andaring mantap. Harga ekonomis tapi fitur dan undangannya sangat mewah dan ekslusif. Makasih juga buat adminnya yang sangat ramah",
   },
   {
-    photo: "lilis.jpg",
+    photo: "rifa.jpg",
     name: "Wina Nurani",
     testimoni:
-      "Fitur undangannya cukup lengkap. Jadi gak perlu bingung lagi milih undangan digital dimana. Thanks Seremoni",
+      "Fitur undangannya cukup lengkap. Jadi gak perlu bingung lagi milih undangan digital dimana. Thanks Andaring",
   },
 ];
 
 // css
 const defaultSpaceY = ["space-y-16"];
-const defaultMiniHead = ["uppercase", "font-semibold", "text-amber-500"];
-const defaultHead = ["font-semibold", "text-3xl"];
+const defaultMiniHead = ["uppercase", "font-semibold", "text-primary"];
+const defaultHead = [
+  "font-semibold",
+  "text-2xl",
+  "md:text-3xl",
+  "text-tertiary",
+];
 const defaultCard = ["text-slate-500", "shadow-md", "border-0"];
 const defaultGrid = [
   "grid",
@@ -49,9 +54,9 @@ export default function Testimoni() {
               <p className={cn(defaultMiniHead)}>Testimonial</p>
               <h2 className={cn(defaultHead)}>Mereka Mempercayai Kami</h2>
               <p>
-                Inveet telah dipercaya oleh 420,056 pengguna. Serta telah
-                terkirim ke 10,721,897 tamu, <br className="hidden md:block" />
-                total biaya percetakan yang dihemat mencapai Rp. 42.887.588.000
+                Kami telah dipercaya oleh 240.680 mempelai. Serta telah terkirim
+                ke 845.624 tamu, <br className="hidden md:block" />
+                lihat seberapa puas mereka yang sudah menggukan Andaring
               </p>
             </div>
 

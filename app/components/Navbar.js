@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Menu } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -11,10 +12,29 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
+// data
+const menus = [
+  {
+    name: "Fitur",
+    href: "/#feature",
+  },
+  {
+    name: "Tema",
+    href: "/#theme",
+  },
+  {
+    name: "Testimoni",
+    href: "/#testimoni",
+  },
+  {
+    name: "Harga",
+    href: "/#price",
+  },
+];
+
 // css
 const defaultFlex = ["flex", "items-center", "justify-between", "gap-8"];
-const defaultColor = ["text-amber-500"];
-const defaultHover = ["hover:text-amber-500"];
+const defaultHover = ["hover:text-primary"];
 
 export default function Navbar() {
   return (
@@ -24,41 +44,39 @@ export default function Navbar() {
           <div className={cn(defaultFlex, "text-slate-600")}>
             {/* brand */}
             <div className="font-bold uppercase">
-              <Link href="/" className={cn(defaultColor, "text-lg")}>
-                Wedding
+              <Link href="/" className={cn(defaultFlex, "gap-2", "text-xl")}>
+                <Image
+                  src="/img/logo/andaring.png"
+                  width={120}
+                  height={120}
+                  alt="andaring"
+                  style={{ width: "auto", height: "auto" }}
+                />
               </Link>
             </div>
 
             {/* menu */}
-            <div
-              className={cn(defaultFlex, "font-semibold", "hidden", "md:flex")}
-            >
-              <Link className={cn(defaultHover)} href="/#feature">
-                Fitur
-              </Link>
-              <Link className={cn(defaultHover)} href="/#template">
-                Tema
-              </Link>
-              <Link className={cn(defaultHover)} href="/#testimoni">
-                Testimoni
-              </Link>
-              <Link className={cn(defaultHover)} href="/#price">
-                Harga
-              </Link>
+            <div className={cn(defaultFlex, "hidden", "md:flex")}>
+              {menus.map((menu, index) => (
+                <Link key={index} href={menu.href} className={cn(defaultHover)}>
+                  {menu.name}
+                </Link>
+              ))}
             </div>
 
             {/* auth */}
             <div className={cn(defaultFlex, "gap-5", "hidden", "md:flex")}>
               <Link href="/login">
-                <Button className="rounded-full" variant="outlinePrimary">
+                <Button
+                  className="text-primary hover:text-primary hover:bg-white"
+                  variant="ghost"
+                >
                   Login
                 </Button>
               </Link>
 
               <Link href="/register">
-                <Button className="rounded-full" variant="primary">
-                  Register
-                </Button>
+                <Button variant="primary">Register</Button>
               </Link>
             </div>
 
@@ -71,36 +89,39 @@ export default function Navbar() {
                 <SheetContent className="text-left">
                   <SheetHeader className="text-left">
                     <SheetTitle className="text-slate-600">
-                      <Link href="/">Wedding</Link>
+                      <Link href="/">
+                        <Image
+                          src="/img/logo/andaring.png"
+                          width={150}
+                          height={150}
+                          alt="andaring"
+                        />
+                      </Link>
                     </SheetTitle>
                   </SheetHeader>
                   {/* menu */}
                   <div className="mt-8 flex flex-col gap-5 text-slate-600">
-                    <Link className={cn(defaultHover)} href="/#feature">
-                      Fitur
-                    </Link>
-                    <Link className={cn(defaultHover)} href="/#template">
-                      Tema
-                    </Link>
-                    <Link className={cn(defaultHover)} href="/#testimoni">
-                      Testimoni
-                    </Link>
-                    <Link className={cn(defaultHover)} href="/#price">
-                      Harga
-                    </Link>
+                    {menus.map((menu, index) => (
+                      <Link
+                        key={index}
+                        href={menu.href}
+                        className={cn(defaultHover)}
+                      >
+                        {menu.name}
+                      </Link>
+                    ))}
+
                     <Link href="/login">
                       <Button
-                        className="w-full font-normal text-base"
-                        variant="outlinePrimary"
+                        className="w-full text-primary hover:text-primary hover:bg-white"
+                        variant="ghost"
                       >
                         Login
                       </Button>
                     </Link>
+
                     <Link href="/register">
-                      <Button
-                        className="w-full font-normal text-base"
-                        variant="primary"
-                      >
+                      <Button className="w-full" variant="primary">
                         Register
                       </Button>
                     </Link>

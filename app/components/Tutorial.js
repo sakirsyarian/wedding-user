@@ -29,8 +29,13 @@ const tutorials = [
 
 // css
 const defaultSpaceY = ["space-y-16"];
-const defaultMiniHead = ["uppercase", "font-semibold", "text-amber-500"];
-const defaultHead = ["font-semibold", "text-3xl"];
+const defaultMiniHead = ["uppercase", "font-semibold", "text-primary"];
+const defaultHead = [
+  "font-semibold",
+  "text-2xl",
+  "md:text-3xl",
+  "text-tertiary",
+];
 const defaultCard = ["text-slate-500", "shadow-md", "border-0"];
 const defaultGrid = ["grid", "grid-cols-1", "md:grid-cols-2", "gap-5"];
 
@@ -45,7 +50,7 @@ export default function Tutorial() {
               <p className={cn(defaultMiniHead)}>Tutorial Wedding</p>
               <h2 className={cn(defaultHead)}>Langkah Pembuatan Undangan</h2>
               <p>
-                Hanya 4 langkah dan website undangan pernikahan online kamu siap
+                Hanya perlu 4 langkah untuk undangan pernikahan online Anda siap
                 disebar!
               </p>
             </div>
@@ -61,7 +66,9 @@ export default function Tutorial() {
                   priority={true}
                 />
               </div>
-              <div className={cn(defaultGrid)}>
+              <div
+                className={cn(defaultGrid, "md:grid-cols-1", "lg:grid-cols-2")}
+              >
                 {tutorials.map((tutorial, index) => (
                   <Card key={index} className={cn(defaultCard)}>
                     <CardHeader>

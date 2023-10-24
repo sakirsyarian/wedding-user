@@ -3,5 +3,20 @@
 @tailwind utilities;
 
 html {
-  @apply scroll-smooth
+  @apply scroll-smooth;
+}
+
+/* HIDE RADIO */
+.radio-input {
+  @apply absolute w-0 h-0 opacity-0;
+}
+
+/* IMAGE STYLES */
+.radio-image {
+  @apply cursor-pointer;
+}
+
+/* CHECKED STYLES */
+[data-state="checked"] ~ .radio-image {
+  @apply outline outline-offset-2 outline-2 outline-primary rounded-lg;
 }

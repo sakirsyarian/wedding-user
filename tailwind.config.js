@@ -16,6 +16,13 @@ module.exports = {
       },
     },
     extend: {
+      colors: {
+        primary: "#CBA35C",
+        secondary: "#FFB000",
+        "outline-primary": "#FBF0B2",
+        tertiary: "#22668D",
+        "outline-tertiary": "#8ECDDD",
+      },
       keyframes: {
         "accordion-down": {
           from: { height: 0 },

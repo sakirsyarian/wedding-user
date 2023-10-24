@@ -12,19 +12,22 @@ const buttonVariants = cva(
         default:
           "bg-slate-900 text-slate-50 hover:bg-slate-900/90 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-50/90",
         primary:
-          "bg-amber-500 text-slate-50 hover:bg-amber-500/90 dark:bg-amber-900 dark:text-slate-50 dark:hover:bg-amber-900/90",
+          "bg-primary text-slate-50 hover:bg-primary/90 dark:bg-amber-900 dark:text-slate-50 dark:hover:bg-amber-900/90",
+        secondary:
+          "bg-slate-100 text-slate-900 hover:bg-slate-100/80 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-800/80",
+        tertiary:
+          "bg-[#22668D] text-slate-50 hover:bg-[#22668D]/90 dark:bg-amber-900 dark:text-slate-50 dark:hover:bg-amber-900/90",
         outline:
           "border border-slate-200 bg-white hover:bg-slate-100 hover:text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:hover:bg-slate-800 dark:hover:text-slate-50",
         outlinePrimary:
-          "border-2 border-amber-500 bg-white hover:bg-amber-500 hover:text-white dark:border-amber-800 dark:bg-amber-950 dark:hover:bg-amber-800 dark:hover:text-amber-50",
+          "border-2 border-primary bg-white hover:bg-primary hover:text-white dark:border-amber-800 dark:bg-amber-950 dark:hover:bg-amber-800 dark:hover:text-amber-50",
+        outlineTertiary:
+          "border-2 border-[#8ECDDD] bg-white hover:bg-[#8ECDDD] hover:text-white dark:border-amber-800 dark:bg-amber-950 dark:hover:bg-amber-800 dark:hover:text-amber-50",
         destructive:
           "bg-red-500 text-slate-50 hover:bg-red-500/90 dark:bg-red-900 dark:text-slate-50 dark:hover:bg-red-900/90",
-        secondary:
-          "bg-slate-100 text-slate-900 hover:bg-slate-100/80 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-800/80",
+
         ghost:
           "hover:bg-slate-100 hover:text-slate-900 dark:hover:bg-slate-800 dark:hover:text-slate-50",
-        ghostPrimary:
-          "hover:bg-amber-100 hover:text-amber-500 dark:hover:bg-amber-800 dark:hover:text-amber-50",
         link: "text-slate-900 underline-offset-4 hover:underline dark:text-slate-50",
       },
       size: {
