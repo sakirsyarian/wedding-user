@@ -31,6 +31,7 @@
     "date-fns": "^2.30.0",
     "eslint": "8.49.0",
     "eslint-config-next": "13.5.1",
+    "howler": "^2.2.4",
     "lucide-react": "^0.279.0",
     "next": "13.5.1",
     "postcss": "8.4.30",

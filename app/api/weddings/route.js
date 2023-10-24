@@ -6,10 +6,10 @@ export async function POST(request) {
     const cookieStore = cookies();
     const token = cookieStore.get("act");
 
-    const dataTheme = await request.json();
+    const dataWedding = await request.json();
     const res = await axios.post(
       "http://localhost:3002/v1/customer/weddings",
-      dataTheme,
+      dataWedding,
       {
         headers: {
           Authorization: `Bearer ${token.value}`,
@@ -44,10 +44,10 @@ export async function PATCH(request) {
     const cookieStore = cookies();
     const token = cookieStore.get("act");
 
-    const dataTheme = await request.json();
+    const dataWedding = await request.json();
     const res = await axios.patch(
       "http://localhost:3002/v1/customer/theme",
-      dataTheme,
+      dataWedding,
       {
         headers: {
           Authorization: `Bearer ${token.value}`,

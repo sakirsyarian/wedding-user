@@ -55,7 +55,7 @@ async function selectedData() {
   return res.json();
 }
 
-export default async function Event() {
+export default async function Theme() {
   const themes = await getData();
   const selectedTheme = await selectedData();
 

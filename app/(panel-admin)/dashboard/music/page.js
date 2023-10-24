@@ -1,86 +1,86 @@
-import { cn } from "@/lib/utils";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { redirect } from "next/navigation";
 
-// data
-const musics = [
-  {
-    title: "Marry Your Daughter - Brian McKnight",
-    source: "pastel.png",
-  },
-  {
-    title: "Shane Filan - Beautiful In White",
-    source: "sparkling.png",
-  },
-  {
-    title: "Christina Perri - A Thousand Years",
-    source: "sweet.png",
-  },
-];
+import { cn } from "@/lib/utils";
+import { getToken } from "@/helpers/token";
+import FormMusic from "./form";
 
 // css
-const defaultSpaceY = ["space-y-10"];
-const defaultCard = ["text-slate-500", "shadow-md", "border-0"];
-const defaultCardImage = ["text-slate-500", "shadow-none", "border-0"];
-const defaultGrid = ["grid", "items-center", "gap-10"];
+const defaultCard = ["p-10", "rounded-lg", "shadow-md", "bg-white"];
 
-export default function Music() {
+// validasi ulang
+export const revalidate = 0;
+
+async function getData() {
+  const token = getToken();
+  const res = await fetch("http://localhost:3002/v1/customer/musics", {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token.value}`,
+    },
+  });
+
+  // jika token habis atau unauthorized
+  if (res.status === 401) {
+    redirect("/login");
+  }
+
+  // jika error tampilkan pesan
+  if (!res.ok) {
+    console.log(res.status, "<<< status");
+    console.log(res.statusText, "<<< statusText");
+  }
+
+  return res.json();
+}
+
+async function selectedData() {
+  const token = getToken();
+  const res = await fetch("http://localhost:3002/v1/customer/music/selected", {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token.value}`,
+    },
+  });
+
+  // jika token habis atau unauthorized
+  if (res.status === 401) {
+    redirect("/login");
+  }
+
+  // jika data tidak ditemukan
+  if (res.status === 404) {
+    return null;
+  }
+
+  // jika error tampilkan pesan
+  if (!res.ok) {
+    console.log(res.status, "<<< status");
+    console.log(res.statusText, "<<< statusText");
+  }
+
+  return res.json();
+}
+
+export default async function Music() {
+  const musics = await getData();
+  const selectedMusic = await selectedData();
+
+  // mendapatkan id theme untuk validasi
+  const zodEnum = [];
+  musics.data.map((item) => {
+    zodEnum.push(item._id);
+  });
+
   return (
     <>
-      <section id="music">
+      <section id="theme">
         <div className="px-5 py-10 md:container">
-          <div className={cn(defaultSpaceY)}>
-            <Card className={cn(defaultCard)}>
-              <CardHeader>
-                <CardTitle>Musik</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <RadioGroup
-                  defaultValue="option-0"
-                  className="flex items-center gap-5"
-                >
-                  {musics.map((music, index) => (
-                    <div key={index} className="flex items-center space-x-2">
-                      <RadioGroupItem
-                        id={`option-${index}`}
-                        value={`option-${index}`}
-                        className="radio-input"
-                      />
-                      <Label
-                        htmlFor={`option-${index}`}
-                        className="radio-image rounded-md border"
-                      >
-                        <Card className={cn(defaultCardImage)}>
-                          <CardHeader>
-                            <CardTitle className="font-normal text-base">
-                              {music.title}
-                            </CardTitle>
-                          </CardHeader>
-                          <CardFooter>
-                            <Button size="sm" className="w-full">
-                              Play
-                            </Button>
-                          </CardFooter>
-                        </Card>
-                      </Label>
-                    </div>
-                  ))}
-                </RadioGroup>
-              </CardContent>
-              <CardFooter></CardFooter>
-            </Card>
-
-            <Button variant="primary" className="w-full">
-              Simpan
-            </Button>
+          <div className={cn(defaultCard)}>
+            <FormMusic
+              musics={musics.data}
+              zodEnum={zodEnum}
+              selected={selectedMusic.data}
+            />
           </div>
         </div>
       </section>
